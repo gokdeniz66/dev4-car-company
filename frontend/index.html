@@ -6,11 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
     <link rel="icon" href="https://windesheim.nl/assets/favicons/favicon.ico">
+    
     <title>JWT</title>
 </head>
 <body>
+     <!-- home page page -->
+    <div class="container" id="homePage">
+        <nav>
+            <div class="logo">
+              <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+      
+            <ul class="nav-links">
+                <!-- <li><a href="#">home</a></li> -->
+                <li><a href="contact.html">contact</a></li>
+                <!-- <li><a href="#">work</a></li> -->
+                <!-- <li><a onclick="showPage('loginPage')">login</a></li> -->
+            </ul>
+          </nav>
+
+    </div>
+    
     <!-- Register page -->
+
     <div class="container hidden" id="registerPage">
+           <nav>
+            <div class="logo">
+              <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+      
+            <ul class="nav-links">
+                <li><a href="#">home</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">work</a></li>
+                <li><a onclick="showPage('loginPage')">login</a></li>
+            </ul>
+          </nav>
         <div class="input">
             <span class="label">E-mail:</span>
             <input type="text" name="email" id="email1">
@@ -36,8 +69,22 @@
         </div>
         <p>Already have an account? <a onclick="showPage('loginPage')">Login</a></p>
     </div>
-    <!-- Login page -->
-    <div class="container" id="loginPage">
+     <!-- Login page -->
+     <div class="container hidden" id="loginPage">
+        <nav>
+            <div class="logo">
+              <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+      
+            <ul class="nav-links">
+                <li><a href="#">home</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">work</a></li>
+                <li><a onclick="showPage('loginPage')">login</a></li>
+            </ul>
+          </nav>
+
         <div class="input">
             <span class="label">E-mail:</span>
             <input type="text" name="email" id="email2">
@@ -51,11 +98,13 @@
         </div>
         <p>Don't have an account yet? <span onclick="showPage('registerPage')">Register</span></p>
     </div>
+
     <!-- User info page -->
     <div class="container hidden" id="mainPage">
         <span class="welcome" id="welcome"></span>
         <button id="logout" onclick="logout()">Logout</button>
     </div>
+ 
 </body>
 <script src="main.js"></script>
 </html>
