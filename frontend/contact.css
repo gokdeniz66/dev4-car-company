@@ -113,8 +113,8 @@ input{
     width: 300px;
 }
 
-button{
-    width: 100%;
+.btn{
+    /* width: 100%; */
     padding: 10px;
     margin-top: 20px;
     cursor: pointer;
@@ -125,3 +125,22 @@ button{
 }
 
 
+.btn-color {
+    color: #fff;
+    background-color: #1896ff;
+    border-color: #1896ff;
+}
+
+.btn-color:hover {
+    color: #fff;
+    background-color: #003866;
+    border-color: #003866;
+}
+
+.btn-color:focus,
+.btn-color.focus {
+    color: #fff;
+    background-color: #1896ff;
+    border-color: #1896ff;
+    box-shadow: #1896ff;
+}
