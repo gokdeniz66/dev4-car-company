@@ -9,7 +9,7 @@
 }
 
 .login-form {
-    margin-top: 280px;
+    margin-top: 230px;
 }
 
 .btn-login {
@@ -19,7 +19,7 @@
     margin: 10px;
     cursor: pointer;
     font-size: 1.2em;
-    background-color: #000000;
+    background-color: #00adef;
     color: white;
     border: none;
 }
@@ -46,7 +46,16 @@
     justify-content: center;
     font-size: 25px;
     text-transform: uppercase;
-    text-decoration: underline #000000;
+    text-decoration: underline white;
     margin-bottom: 20px;
     letter-spacing: 2px;
+}
+
+input {
+    font-size: 1em !important;
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    background-color: #eee !important;
+    width: 100%;
+    max-width: 300px !important;
 }

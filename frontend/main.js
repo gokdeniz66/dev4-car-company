@@ -16,7 +16,7 @@ function register(e) {
 
     // Submit data to API
     api("users", 'POST', data).then((res) => {
-        if(res.message == 'success'){
+        if (res.message == 'success') {
             alert("User created");
         }
     });
@@ -31,7 +31,7 @@ function login() {
 
     // Submit data to API
     api("auth", 'POST', data).then((res) => {
-        if(res.message == 'success'){ 
+        if (res.message == 'success') {
             // Save the received JWT in a cookie
             setCookie("token", res.access_token, 365);
             showPage('mainPage');
@@ -43,23 +43,33 @@ function login() {
 function getUser() {
     // Fetch user data from API
     api("me").then((res) => {
-        if(res.message == 'success'){
+        if (res.message == 'success') {
             document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
         }
     });
 }
 
-function logout(){
+function logout() {
     deleteCookie("token");
     showPage('loginPage');
-
 }
+
+function loginPage() {
+    showPage('loginPage');
+    var x = document.getElementById("area-mainpage");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
 
 // Helper functions
 
-function showPage(id){
+function showPage(id) {
     let pages = document.getElementsByClassName("container");
-    for(let i = 0; i < pages.length; i++){
+    for (let i = 0; i < pages.length; i++) {
         pages[i].style.display = "none";
     }
     document.getElementById(id).style.display = "block";
@@ -71,7 +81,7 @@ function bindEvents() {
     enableSubmits();
 }
 
-function enableSubmits(){
+function enableSubmits() {
     document.body.addEventListener("keydown", function (e) {
         if (e.key == "Enter") { // if enter is pressed
             console.log(e);
@@ -175,15 +185,15 @@ let slideIndex = 0;
 showSlides();
 
 function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 7000); // Change image every 2 seconds
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 7000); // Change image every 2 seconds
 }
 
 // let slideIndex = 1;
@@ -191,11 +201,11 @@ showSlides(slideIndex);
 
 // Next/previous controls
 function plusSlides(n) {
-  showSlides(slideIndex += n);
+    showSlides(slideIndex += n);
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
-  showSlides(slideIndex = n);
+    showSlides(slideIndex = n);
 }
 
