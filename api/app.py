@@ -28,3 +28,5 @@ app.add_url_rule('/me', None, me, methods=['GET'])
 if __name__ == '__main__':
     DB.create()
     app.run()
+    
+    
