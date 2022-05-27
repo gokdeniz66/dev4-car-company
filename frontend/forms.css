@@ -41,7 +41,7 @@
     margin: 10px;
 }
 
-.customerLabel {
+.formLabel {
     display: flex;
     justify-content: center;
     font-size: 25px;
@@ -58,4 +58,15 @@ input {
     background-color: #eee !important;
     width: 100%;
     max-width: 300px !important;
+}
+
+.register-form {
+    display: grid;
+    justify-content: center;
+    margin-top: 230px;
+}
+
+.loginLink {
+    cursor: pointer;
+    font-weight: bold;
 }

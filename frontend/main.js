@@ -34,7 +34,7 @@ function login() {
         if (res.message == 'success') {
             // Save the received JWT in a cookie
             setCookie("token", res.access_token, 365);
-            showPage('mainPage');
+            showPage('homePage');
             getUser();
         }
     });

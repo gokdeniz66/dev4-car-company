@@ -41,36 +41,37 @@
             <p class="logo-letters">Sedecrem-Zneb</p>
 
             <ul class="nav-links">
-                <li><a href="#">home</a></li>
-                <li><a href="#">about</a></li>
-                <li><a href="#">work</a></li>
+                <li><a href="index.html">home</a></li>
                 <li><a onclick="showPage('loginPage')">login</a></li>
             </ul>
         </nav>
-        <div class="input">
-            <span class="label">E-mail:</span>
-            <input type="text" name="email" id="email1">
+        <div class="register-form">
+            <label class="formLabel">Registration</label>
+            <div class="input">
+                <span class="label">E-mail:</span>
+                <input type="text" name="email" id="email1">
+            </div>
+            <div class="input">
+                <span class="label">Password:</span>
+                <input type="password" name="password" id="password1">
+            </div>
+            <div class="input">
+                <span class="label">Confirm:</span>
+                <input type="password" name="confirm" id="confirm">
+            </div>
+            <div class="input">
+                <span class="label">First name:</span>
+                <input type="text" name="firstname" id="firstname">
+            </div>
+            <div class="input">
+                <span class="label">Last name:</span>
+                <input type="text" name="lastname" id="lastname">
+            </div>
+            <div class="input">
+                <button id="register">Register</button>
+            </div>
+            <p>Already have an account? <a class="loginLink"onclick="showPage('loginPage')">Login</a></p>
         </div>
-        <div class="input">
-            <span class="label">Password:</span>
-            <input type="password" name="password" id="password1">
-        </div>
-        <div class="input">
-            <span class="label">Confirm:</span>
-            <input type="password" name="confirm" id="confirm">
-        </div>
-        <div class="input">
-            <span class="label">First name:</span>
-            <input type="text" name="firstname" id="firstname">
-        </div>
-        <div class="input">
-            <span class="label">Last name:</span>
-            <input type="text" name="lastname" id="lastname">
-        </div>
-        <div class="input">
-            <button id="register">Register</button>
-        </div>
-        <p>Already have an account? <a onclick="showPage('loginPage')">Login</a></p>
     </div>
 
     <!-- Login page -->
@@ -88,7 +89,7 @@
         </nav>
 
         <div class="login-form">
-            <label class="customerLabel">Customer</label>
+            <label class="formLabel">Customer</label>
             <div class="inputSection-login">
                 <div class="login-input">
                     <span class="label">E-mail:</span>
