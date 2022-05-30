@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: white;
+}
+
+body,
+html {
+    height: 100%;
+    /* background-color: black; */
+
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    min-height: 8vh;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo-size {
+    width: 100%;
+    max-width: 90px;
+}
+
+.nav-links {
+    display: flex;
+    margin-right: 70px;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 0px !important;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+    .nav-links {
+        margin-right: 0px !important;
+    }
+}
+
+.nav-links li {
+    list-style: none;
+    padding: 5px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: auto;
+    /* text-align: center; */
+    font-family: arial;
+    background: grey;
+    height: 200px;
+    margin-top: 10%;
+  }
+
+.card img{
+    padding-left: 10px;
+    padding-top: 10px;
+    float: left;
+}
+
+.card h3  {
+    display: inline-block;
+    padding-left: 10px
+}
+
+.card p  {
+    display: inline-block;
+    padding-left: 10px
+}
+
+.card button{
+    float: right;
+    position: relative;
+    right:    0;
+    bottom:   0;
+}
