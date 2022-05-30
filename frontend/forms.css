@@ -9,7 +9,7 @@
 }
 
 .login-form {
-    margin-top: 230px;
+    margin-top: 150px;
 }
 
 .btn-login {
@@ -29,6 +29,7 @@
     justify-content: center;
     padding-top: 8px;
     white-space: break-spaces;
+    color: white;
 }
 
 .registerLink {
@@ -49,6 +50,7 @@
     text-decoration: underline white;
     margin-bottom: 20px;
     letter-spacing: 2px;
+    color: white;
 }
 
 input {
@@ -63,10 +65,14 @@ input {
 .register-form {
     display: grid;
     justify-content: center;
-    margin-top: 140px;
+    margin-top: 100px;
 }
 
 .loginLink {
     cursor: pointer;
     font-weight: bold;
+}
+
+.loginText {
+    color: white;
 }

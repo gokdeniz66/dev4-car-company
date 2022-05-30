@@ -19,7 +19,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    color: white;
 }
 
 body,
@@ -94,6 +93,7 @@ button {
     padding: 10px;
     margin-top: 20px;
     cursor: pointer;
+    color: white;
 }
 
 .hidden {
@@ -242,7 +242,7 @@ a {
 
 /* About us */
 .about-us {
-
+    color: white;
     text-align: center;
 }
 

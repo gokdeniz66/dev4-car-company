@@ -5,10 +5,13 @@ html {
     font-family: sans-serif;
 }
 
-
-
 div label {
     display: block;
+}
+
+.contactInput {
+    color: #000000;
+
 }
 
 .topic {
@@ -104,4 +107,32 @@ input {
     background-color: #1896ff;
     border-color: #1896ff;
     box-shadow: #1896ff;
+}
+
+.contactEmployee {
+    color: white;
+}
+
+.contactPreference {
+    width: 73%;
+}
+
+.contactInfo {
+    color: lightgray;
+}
+
+.contactReservation {
+    color: lightgray !important;
+}
+
+.btn-outline-dark {
+    --bs-btn-border-color: white !important;
+}
+
+.contactSend {
+    color: lightgray !important;
+}
+
+.btn {
+    --bs-btn-border-color: white !important;
 }
