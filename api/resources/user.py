@@ -23,3 +23,17 @@ def create_user():
 
     # Return a message and the user id
     return {'message': 'success', 'id': id}, 201
+
+
+def show_user():
+    #qry om users te laten zien
+    qry = '''
+    SELECT  
+         `email`, `password`, `firstname`, `lastname`
+         FROM `users`
+        
+    '''
+
+    id = DB.all(qry)
+
+    return {'message': 'success', 'id': id}, 201

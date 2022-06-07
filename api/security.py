@@ -7,6 +7,7 @@ from flask_jwt_extended import (
     get_jwt_identity
 )
 
+
 def login():
     # Get data from request
     email = request.json.get('email', None)
