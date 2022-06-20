@@ -34,7 +34,7 @@ function login() {
         if (res.message == 'success') {
             // Save the received JWT in a cookie
             setCookie("token", res.access_token, 365);
-            showPage('homePage');
+            showPage('reservationPage');
             getUser();
         } else {
             alert("Credentials are incorrect");
@@ -211,3 +211,6 @@ function currentSlide(n) {
     showSlides(slideIndex = n);
 }
 
+// Calendar disable past dates
+var today = new Date().toISOString().split('T')[0];
+document.getElementsByName("txtDate")[0].setAttribute('min', today);

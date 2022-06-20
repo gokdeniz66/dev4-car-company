@@ -70,7 +70,8 @@
             <div class="input">
                 <button id="register">Register</button>
             </div>
-            <p class="loginText">Already have an account? <a class="loginLink"onclick="showPage('loginPage')">Login</a></p>
+            <p class="loginText">Already have an account? <a class="loginLink" onclick="showPage('loginPage')">Login</a>
+            </p>
         </div>
     </div>
 
@@ -170,6 +171,32 @@
             <a class="text-white"> Sedecrem-Zneb</a>
         </div>
     </div>
+
+
+    <!-- Reservation page -->
+    <div class="container hidden" id="reservationPage">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li><a href="contact.html">contact</a></li>
+                <li><a onclick="logout();">logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="reservationForm">
+            <select class="carSelection" id="cars">
+                <option value="Volvo">Volvo</option>
+            </select>
+            <input type="date" id="txtDate" name="txtDate">
+            <input type="time" id="time" name="time">
+        </div>
+    </div>
+
+
 </body>
 <script src="main.js"></script>
 
