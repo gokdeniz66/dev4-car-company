@@ -36,6 +36,8 @@ function login() {
             setCookie("token", res.access_token, 365);
             showPage('homePage');
             getUser();
+        } else {
+            alert("Credentials are incorrect");
         }
     });
 }
