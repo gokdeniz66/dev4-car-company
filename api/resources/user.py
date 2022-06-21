@@ -37,3 +37,16 @@ def show_user():
     id = DB.all(qry)
 
     return {'message': 'success', 'id': id}, 201
+
+def show_car():
+       #qry om users te laten zien
+    qry = '''
+    SELECT  *
+         FROM `auto`
+		 
+        
+    '''
+
+    model = DB.all(qry)
+
+    return {'message': 'success', 'model': model}, 201

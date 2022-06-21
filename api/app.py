@@ -2,7 +2,7 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from db import DB
-from resources.user import create_user, show_user
+from resources.user import create_user, show_user, show_car
 from security import login, me
 
 
@@ -25,6 +25,8 @@ app.add_url_rule('/users', None, create_user, methods=['POST'])
 app.add_url_rule('/auth', None, login, methods=['POST'])
 app.add_url_rule('/me', None, me, methods=['GET'])
 app.add_url_rule('/users', None, show_user, methods=['GET'])
+app.add_url_rule('/car', None, show_car, methods=['GET'])
+
 
 
 
