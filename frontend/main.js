@@ -6,8 +6,10 @@ function register(e) {
         return;
     }
 
-    // Fetch data from html
+   
+
     data = {
+        
         password: getValue("password1"),
         email: getValue("email1"),
         firstname: getValue("firstname"),
@@ -22,6 +24,54 @@ function register(e) {
     });
 }
 
+function reservatie(e){
+
+ // Fetch data from html
+ api("me").then((res) => {
+    if (res.message == 'success') {
+        document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
+        
+
+
+
+    data ={ 
+        auto_id: selection.value,
+        tijd: getValue("time"),
+        datum: getValue("txtDate"),
+        leveren: select.options[select.selectedIndex].value,
+        klant_id: res.user.id
+
+
+
+
+    }
+    // Submit data to API
+    api("reservatie", 'POST', data).then((res) => {
+        if (res.message == 'success') {
+            alert("gelukt");
+        }
+    });
+}
+});
+}
+
+api("me").then((res) => {
+    if (res.message == 'success') {
+        document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 function car() {
     api("car", 'GET').then((res) => {
@@ -34,24 +84,49 @@ function car() {
     });
 }
 
+const select = document.getElementById('selectionLeveren');
+
+select.addEventListener('change', function handleChange(event) {
+  // 👇️ get selected VALUE even outside event handler
+  console.log(select.options[select.selectedIndex].value);
+
+});
+
+
 
 let selection = document.querySelector('select')
 
+
 selection.addEventListener('change', () => {
-    console.log(selection.value)
 
     api("car", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
                 console.log(res.model[selection.value].brandstof);
 
-                document.getElementById("brandstof").innerHTML =res.model[selection.value].brandstof;
-                document.getElementById("airco").innerHTML =res.model[selection.value].airco;
-                document.getElementById("automaat").innerHTML =res.model[selection.value].automaat;
-                document.getElementById("aantal_zitplaatsen").innerHTML =res.model[selection.value].aantal_zitplaatsen; 
+                document.getElementById("brandstof").innerHTML = res.model[selection.value].brandstof;
+
+                if (res.model[selection.value].airco === 0) {
+                    document.getElementById("airco").innerHTML = "Aicro niet inbegrepen";
+                } else {
+                    document.getElementById("airco").innerHTML = "Airco wel inbegrepen";
+                }
+                if (res.model[selection.value].automaat === 0) {
+                    document.getElementById("automaat").innerHTML = "Geen automaat";
+                } else {
+                    document.getElementById("automaat").innerHTML = "Wel een automaat";
+                }
+
+                document.getElementById("aantal_zitplaatsen").innerHTML = "Aantal Zitplaatsen: " + res.model[selection.value].aantal_zitplaatsen;
             }
         }
     });
+
+    console.log(selection.value)
+
+
+
+
 })
 
 
@@ -72,6 +147,7 @@ function login() {
             showPage('reservationPage');
             getUser();
             car();
+         
         } else {
             alert("Credentials are incorrect");
         }
@@ -83,6 +159,7 @@ function getUser() {
     api("me").then((res) => {
         if (res.message == 'success') {
             document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
+            console.log(res.user.id)
         }
     });
 }
@@ -116,6 +193,7 @@ function showPage(id) {
 function bindEvents() {
     connectButton("register", register);
     connectButton("login", login);
+    connectButton("reserverenButton", reservatie)
     enableSubmits();
 }
 
@@ -181,7 +259,10 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
+ 
+
     return "";
+
 }
 
 function deleteCookie(cname) {

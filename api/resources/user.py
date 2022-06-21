@@ -2,6 +2,7 @@ from flask import request
 from flask_bcrypt import generate_password_hash
 from db import DB
 
+
 def create_user():
     # Parse all arguments for validity
     args = request.get_json()
@@ -14,7 +15,7 @@ def create_user():
         VALUES 
             (:email, :password, :firstname, :lastname)
     '''
-    
+
     # Hash the password before inserting
     args['password'] = generate_password_hash(args['password'])
 
@@ -26,7 +27,7 @@ def create_user():
 
 
 def show_user():
-    #qry om users te laten zien
+    # qry om users te laten zien
     qry = '''
     SELECT  
          `email`, `password`, `firstname`, `lastname`
@@ -38,8 +39,9 @@ def show_user():
 
     return {'message': 'success', 'id': id}, 201
 
+
 def show_car():
-       #qry om users te laten zien
+    # qry om users te laten zien
     qry = '''
     SELECT  *
          FROM `auto`
@@ -50,3 +52,18 @@ def show_car():
     model = DB.all(qry)
 
     return {'message': 'success', 'model': model}, 201
+
+
+def reservatiePosten():
+    args = request.get_json()
+     
+    qry = '''
+    INSERT INTO
+        `reservatie` 
+            (`tijd`, `datum`, `auto_id`, `leveren`, `klant_id`)
+        VALUES 
+            (:tijd, :datum, :auto_id, :leveren, :klant_id)
+    '''
+    id = DB.insert(qry, args)
+
+    return {'message': 'success', 'id': id}, 201

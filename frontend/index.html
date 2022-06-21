@@ -116,7 +116,6 @@
     <!-- User info page -->
     <div id="area-mainpage">
         <div class="container hidden" id="mainPage">
-            <span class="welcome" id="welcome"></span>
             <button id="logout" onclick="logout()">Logout</button>
         </div>
         <div class="slideshow-container">
@@ -182,6 +181,8 @@
             <p class="logo-letters">Sedecrem-Zneb</p>
 
             <ul class="nav-links">
+                <li class="welcome" id="welcome"></li>
+
                 <li><a href="contact.html">contact</a></li>
                 <li><a onclick="logout();">logout</a></li>
             </ul>
@@ -190,13 +191,21 @@
         <div class="reservationForm">
             <select class="carSelection" id="selection">
             </select>
+
             <input type="date" id="txtDate" name="txtDate">
             <input type="time" id="time" name="time">
             <label class="specsLabel" id="brandstof">Type brandstof</label>
             <label class="specsLabel" id="airco">Inbegrepen Airco</label>
             <label class="specsLabel" id="automaat">Inbegrepen Automaat</label>
             <label class="specsLabel" id="aantal_zitplaatsen">Aantal zitplaatsen</label>
-            <button>Reserveren</button>
+
+            
+            <select class="specsLabel" id="selectionLeveren">
+                <option  value="1">Wel leveren</option>
+                <option value="0">Niet leveren</option>
+
+            </select>
+            <button id="reserverenButton">Login</button>
         </div>
     </div>
 
