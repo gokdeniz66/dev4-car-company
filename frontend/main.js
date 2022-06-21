@@ -6,10 +6,8 @@ function register(e) {
         return;
     }
 
-   
 
     data = {
-        
         password: getValue("password1"),
         email: getValue("email1"),
         firstname: getValue("firstname"),
@@ -24,35 +22,28 @@ function register(e) {
     });
 }
 
-function reservatie(e){
-
- // Fetch data from html
- api("me").then((res) => {
-    if (res.message == 'success') {
-        document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
-        
-
-
-
-    data ={ 
-        auto_id: selection.value,
-        tijd: getValue("time"),
-        datum: getValue("txtDate"),
-        leveren: select.options[select.selectedIndex].value,
-        klant_id: res.user.id
-
-
-
-
-    }
-    // Submit data to API
-    api("reservatie", 'POST', data).then((res) => {
+function reservatie(e) {
+    // Fetch data from html
+    api("me").then((res) => {
         if (res.message == 'success') {
-            alert("gelukt");
+            document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
+
+            data = {
+                auto_id: selection.value,
+                tijd: getValue("time"),
+                datum: getValue("txtDate"),
+                leveren: select.options[select.selectedIndex].value,
+                klant_id: res.user.id
+            }
+
+            // Submit data to API
+            api("reservatie", 'POST', data).then((res) => {
+                if (res.message == 'success') {
+                    alert("gelukt");
+                }
+            });
         }
     });
-}
-});
 }
 
 api("me").then((res) => {
@@ -60,18 +51,6 @@ api("me").then((res) => {
         document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 function car() {
     api("car", 'GET').then((res) => {
@@ -87,15 +66,13 @@ function car() {
 const select = document.getElementById('selectionLeveren');
 
 select.addEventListener('change', function handleChange(event) {
-  // 👇️ get selected VALUE even outside event handler
-  console.log(select.options[select.selectedIndex].value);
+    // 👇️ get selected VALUE even outside event handler
+    console.log(select.options[select.selectedIndex].value);
 
 });
 
 
-
 let selection = document.querySelector('select')
-
 
 selection.addEventListener('change', () => {
 
@@ -121,15 +98,7 @@ selection.addEventListener('change', () => {
             }
         }
     });
-
-    console.log(selection.value)
-
-
-
-
 })
-
-
 
 
 function login() {
@@ -147,7 +116,7 @@ function login() {
             showPage('reservationPage');
             getUser();
             car();
-         
+
         } else {
             alert("Credentials are incorrect");
         }
@@ -259,7 +228,7 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
- 
+
 
     return "";
 
