@@ -36,7 +36,6 @@ function car() {
 
 
 let selection = document.querySelector('select')
-document.getElementById("test").innerHTML =res.model[selection.value].brandstof  ;
 
 selection.addEventListener('change', () => {
     console.log(selection.value)
@@ -45,19 +44,14 @@ selection.addEventListener('change', () => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
                 console.log(res.model[selection.value].brandstof);
-                document.getElementById("test1").innerHTML =res.model[selection.value].brandstof  ;
-                document.getElementById("test2").innerHTML =res.model[selection.value].airco  ;
-                document.getElementById("test3").innerHTML =res.model[selection.value].automaat  ;
-                document.getElementById("test4").innerHTML =res.model[selection.value].aantal_zitplaatsen  ;
 
-                
+                document.getElementById("brandstof").innerHTML =res.model[selection.value].brandstof;
+                document.getElementById("airco").innerHTML =res.model[selection.value].airco;
+                document.getElementById("automaat").innerHTML =res.model[selection.value].automaat;
+                document.getElementById("aantal_zitplaatsen").innerHTML =res.model[selection.value].aantal_zitplaatsen; 
             }
         }
     });
-
-
-
-
 })
 
 
