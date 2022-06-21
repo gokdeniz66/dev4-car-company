@@ -23,24 +23,25 @@ function register(e) {
 }
 
 
-function pic(){
-
+function car() {
     api("car", 'GET').then((res) => {
         if (res.message == 'success') {
-           
-          
-
-            for (let i = 0; i < res.model.length; i++) {
+            for (i = 0; i < res.model.length; i++) {
                 console.log(res.model[i].model);
-                document.getElementById("test").innerHTML = `Welcome, ${res.model[i].model}`;
-              }
-           
+                document.getElementById("selection").innerHTML += '<option value="' + res.model[i].id + '">' + res.model[i].model + '</option>';
+            }
         }
     });
-
-
 }
-test.onclick = pic();
+
+
+let selection = document.querySelector('select')
+
+selection.addEventListener('change', () => {
+    console.log(selection.value)
+})
+
+
 
 
 function login() {
@@ -57,6 +58,7 @@ function login() {
             setCookie("token", res.access_token, 365);
             showPage('reservationPage');
             getUser();
+            car();
         } else {
             alert("Credentials are incorrect");
         }
