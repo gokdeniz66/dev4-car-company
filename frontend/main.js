@@ -22,6 +22,27 @@ function register(e) {
     });
 }
 
+
+function pic(){
+
+    api("car", 'GET').then((res) => {
+        if (res.message == 'success') {
+           
+          
+
+            for (let i = 0; i < res.model.length; i++) {
+                console.log(res.model[i].model);
+                document.getElementById("test").innerHTML = `Welcome, ${res.model[i].model}`;
+              }
+           
+        }
+    });
+
+
+}
+test.onclick = pic();
+
+
 function login() {
     // Fetch data from html
     data = {
