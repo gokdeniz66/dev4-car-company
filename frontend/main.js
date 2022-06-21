@@ -36,9 +36,28 @@ function car() {
 
 
 let selection = document.querySelector('select')
+document.getElementById("test").innerHTML =res.model[selection.value].brandstof  ;
 
 selection.addEventListener('change', () => {
     console.log(selection.value)
+
+    api("car", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.model.length; i++) {
+                console.log(res.model[selection.value].brandstof);
+                document.getElementById("test1").innerHTML =res.model[selection.value].brandstof  ;
+                document.getElementById("test2").innerHTML =res.model[selection.value].airco  ;
+                document.getElementById("test3").innerHTML =res.model[selection.value].automaat  ;
+                document.getElementById("test4").innerHTML =res.model[selection.value].aantal_zitplaatsen  ;
+
+                
+            }
+        }
+    });
+
+
+
+
 })
 
 
