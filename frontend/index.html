@@ -205,9 +205,47 @@
                 <option value="0">Niet leveren</option>
 
             </select>
-            <button id="reserverenButton">Reserveren</button>
+            <button  onclick="reservatieLatenZien();" id="reserverenButton">Reserveren</button>
         </div>
     </div>
+
+
+
+
+     <!-- Reservation bekijken page -->
+     <div class="container hidden" id="reservationPageBekijken">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li class="welcome" id="welcome"></li>
+
+                <li><a href="contact.html">contact</a></li>
+                <li><a onclick="logout();">logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="reservationForm">
+            <select class="carSelection1" id="selection1">
+            </select>
+
+            <input type="date" id="txtDate" name="txtDate">
+            <input type="time" id="time" name="time">
+            <label class="specsLabel" id="brandstof1">Type brandstof</label>
+            <label class="specsLabel" id="">Inbegrepen Airco</label>
+            <label class="specsLabel" id="">Inbegrepen Automaat</label>
+            <label class="specsLabel" id="">Aantal zitplaatsen</label>
+
+
+            <button id="reserverenButton">Reservering veranderen</button>
+            <button id="reserverenButton">Reservering verwijderen</button>
+
+        </div>
+    </div>
+
 
 
 </body>

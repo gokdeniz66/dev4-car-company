@@ -22,6 +22,8 @@ function register(e) {
     });
 }
 
+ var x = document.getElementById('reservationPageBekijken')
+
 function reservatie(e) {
     // Fetch data from html
     api("me").then((res) => {
@@ -39,7 +41,14 @@ function reservatie(e) {
             // Submit data to API
             api("reservatie", 'POST', data).then((res) => {
                 if (res.message == 'success') {
-                    alert("gelukt");
+                    showPage("reservationPageBekijken");
+                    window.onbeforeunload = function() {
+                        return "Dude, are you sure you want to leave? Think of the kittens!";
+                      }
+                      laatReservatieZien()
+                
+
+                    
                 }
             });
         }
@@ -52,6 +61,7 @@ api("me").then((res) => {
     }
 });
 
+
 function car() {
     api("car", 'GET').then((res) => {
         if (res.message == 'success') {
@@ -62,6 +72,51 @@ function car() {
         }
     });
 }
+
+function laatReservatieZien(){
+    
+
+    api("reservatie", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.reservatie.length; i++) {
+                console.log(res.reservatie[i].model)
+                document.getElementById("selection1").innerHTML += '<option value="' + res.reservatie[i].auto_id + '">' + res.reservatie[i].model + '</option>';
+            }
+           
+
+        } 
+    });
+
+}
+
+let selection1 = document.querySelector('.carSelection1');
+
+selection1.addEventListener('change',() => {
+    api("reservatie", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.reservatie.length; i++) {
+                console.log(res.reservatie[selection1.value].model);
+                document.getElementById("brandstof1").innerHTML = res.reservatie[selection1.value].model;
+
+            }
+           
+
+        } 
+    });
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
 
 const select = document.getElementById('selectionLeveren');
 
@@ -101,6 +156,13 @@ selection.addEventListener('change', () => {
 })
 
 
+
+
+
+
+
+
+
 function login() {
     // Fetch data from html
     data = {
@@ -128,9 +190,11 @@ function getUser() {
     api("me").then((res) => {
         if (res.message == 'success') {
             document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
-            console.log(res.user.id)
+            console.log("user id: "+res.user.id)
         }
     });
+
+
 }
 
 function logout() {
@@ -146,6 +210,12 @@ function loginPage() {
     } else {
         x.style.display = "none";
     }
+}
+
+function reservatieLatenZien() {
+    showPage('reservationPageBekijken');
+   
+   
 }
 
 
