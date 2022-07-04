@@ -22,7 +22,7 @@ function register(e) {
     });
 }
 
- var x = document.getElementById('reservationPageBekijken')
+var x = document.getElementById('reservationPageBekijken')
 
 
 
@@ -46,13 +46,13 @@ function reservatie(e) {
             api("reservatie", 'POST', data).then((res) => {
                 if (res.message == 'success') {
                     showPage("reservationPageBekijken");
-                    window.onbeforeunload = function() {
+                    window.onbeforeunload = function () {
                         return "Dude, are you sure you want to leave? Think of the kittens!";
-                      }
-                      laatReservatieZien()
-                
+                    }
+                    laatReservatieZien()
 
-                    
+
+
                 }
             });
         }
@@ -77,20 +77,15 @@ function car() {
     });
 }
 
-function laatReservatieZien(){
-    
-
+function laatReservatieZien() {
     api("reservatie", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
                 console.log(res.reservatie[i].model)
                 document.getElementById("selection1").innerHTML += '<option value="' + res.reservatie[i].id + '">' + res.reservatie[i].model + '</option>';
             }
-           
-
-        } 
+        }
     });
-
 }
 
 let selection1 = document.querySelector('#selection1');
@@ -124,15 +119,26 @@ selection1.addEventListener('change',() => {
 
             }
            
-
-        } 
+        
+       
+     } 
     });
 
+// let selection1 = document.querySelector('.car1');
+
+// selection1.addEventListener('change',() => {
+//     api("reservatie", 'GET').then((res) => {
+//         if (res.message == 'success') {
+//             for (i = 0; i < res.reservatie.length; i++) {
+//                 console.log(res.reservatie[selection1.value].model);
+//                 document.getElementById("brandstof1").innerHTML = res.reservatie[selection1.value].model;
+
+//             }
 
 
-
-
-})
+//         } 
+//     });
+// })
 
 
 
@@ -220,7 +226,7 @@ function getUser() {
     api("me").then((res) => {
         if (res.message == 'success') {
             document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
-            console.log("user id: "+res.user.id)
+            console.log("user id: " + res.user.id)
         }
     });
 
@@ -244,8 +250,6 @@ function loginPage() {
 
 function reservatieLatenZien() {
     showPage('reservationPageBekijken');
-   
-   
 }
 
 
