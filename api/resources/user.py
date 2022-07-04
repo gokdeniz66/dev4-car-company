@@ -76,11 +76,6 @@ def reservatieVerwijderen():
     SET "reservatie.check_reservatie" = 1
     WHERE id = :reservatie.id
     '''
-
-    
-
-
-   
     DB.update(qry)
     return {'message': 'success',}, 201
 

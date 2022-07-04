@@ -25,19 +25,6 @@ function register(e) {
  var x = document.getElementById('reservationPageBekijken')
 
 
- function reservatieVerwijderen(){
- 
-    api("reservatie", 'PATCH').then((res) => {
-        if (res.message == 'success') {
-        
-            alert("gelukt");
-
-            
-        }
-    });
-}
-
-reservatieVerwijderen()
 
 
 function reservatie(e) {
