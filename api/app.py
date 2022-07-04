@@ -2,7 +2,7 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from db import DB
-from resources.user import create_user, show_user, show_car, reservatiePosten, show_reservatie, reservatieVerwijderen
+from resources.user import create_user, show_user, show_car, reservatiePosten, show_reservatie, reservatieVerwijderen, show_admin
 from security import login, me
 
 
@@ -28,7 +28,8 @@ app.add_url_rule('/users', None, show_user, methods=['GET'])
 app.add_url_rule('/car', None, show_car, methods=['GET'])
 app.add_url_rule('/reservatie', None, show_reservatie, methods=['GET'])
 app.add_url_rule('/reservatie', None, reservatiePosten, methods=['POST'])
-app.add_url_rule('/reservatie', None, reservatieVerwijderen, methods=['PATCH'])
+app.add_url_rule('/admin', None, show_admin, methods=['GET'])
+
 
 
 

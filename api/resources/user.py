@@ -44,6 +44,27 @@ def show_user():
 
     return {'message': 'success', 'id': id}, 201
 
+def show_admin():
+    # qry om users te laten zien
+    qry = '''
+  
+  SELECT *
+FROM reservatie
+LEFT JOIN  auto
+on reservatie.auto_id = auto.id
+LEFT JOIN users
+on users.id = reservatie.user_id
+
+
+
+
+
+
+    '''
+
+    model = DB.all(qry)
+    print(model)
+    return {'message': 'success', 'model': model}, 201
 
 def show_car():
     # qry om users te laten zien
@@ -53,11 +74,7 @@ def show_car():
 
 
     '''
-#         SELECT *
-# FROM auto
-# INNER JOIN reservatie
-# ON auto.id = reservatie.auto_id
-# WHERE check_reservatie = 0
+
 
     model = DB.all(qry)
 

@@ -77,6 +77,18 @@ function car() {
     });
 }
 
+function admin() {
+    api("admin", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.model.length; i++) {
+                console.log(res.model[i]);
+                document.getElementById("carkeuze").innerHTML += '<option value="' + res.model[i].auto_id + '">' + res.model[i].firstname + " "
+                    + res.model[i].lastname + "(Car " + res.model[i].model + ")" + '</option>';
+            }
+        }
+    });
+}
+
 function laatReservatieZien() {
     api("reservatie", 'GET').then((res) => {
         if (res.message == 'success') {
@@ -87,6 +99,32 @@ function laatReservatieZien() {
         }
     });
 }
+
+let selectionAdmin = document.querySelector('#carkeuze');
+
+selectionAdmin.addEventListener('change', () => {
+    api("admin", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.model.length; i++) {
+                if (res.model[i].id == selectionAdmin.value) {
+
+                    console.log(res.model[i].auto_id);
+                    document.getElementById("brandstof1").innerHTML = "Brandstof: " + res.reservatie[i].brandstof;
+
+                    break;
+                }
+
+
+            }
+
+
+
+        }
+    })
+})
+
+
+
 
 let selection1 = document.querySelector('#selection1');
 
@@ -228,6 +266,13 @@ function getUser() {
         if (res.message == 'success') {
             document.getElementById('welcome').innerText = `Welcome, ${res.user.firstname} ${res.user.lastname}`;
             console.log("user id: " + res.user.id)
+            console.log(res.user.admin)
+            if (res.user.admin === 1) {
+                showPage('adminPage');
+                admin();
+            } else {
+                showPage('reservationPage');
+            }
         }
     });
 
@@ -268,7 +313,7 @@ function bindEvents() {
     connectButton("register", register);
     connectButton("login", login);
     connectButton("reserverenButton", reservatie)
-    
+
 
 
     enableSubmits();
