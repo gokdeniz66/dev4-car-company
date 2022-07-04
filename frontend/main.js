@@ -90,14 +90,14 @@ function laatReservatieZien() {
 
 let selection1 = document.querySelector('#selection1');
 
-selection1.addEventListener('change',() => {
+selection1.addEventListener('change', () => {
     api("reservatie", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
-                if(res.reservatie[i].id== selection1.value){
+                if (res.reservatie[i].id == selection1.value) {
 
                     console.log(res.reservatie[i]);
-                    document.getElementById("brandstof1").innerHTML = "Brandstof: "+ res.reservatie[i].brandstof;
+                    document.getElementById("brandstof1").innerHTML = "Brandstof: " + res.reservatie[i].brandstof;
                     if (res.reservatie[i].airco === 0) {
                         document.getElementById("airco1").innerHTML = "Aicro niet inbegrepen";
                     } else {
@@ -108,21 +108,22 @@ selection1.addEventListener('change',() => {
                     } else {
                         document.getElementById("automaat1").innerHTML = "Wel een automaat";
                     }
-                    document.getElementById("zitplaatsen1").innerHTML ="Aantal zitplaatsen: "+ res.reservatie[i].aantal_zitplaatsen;
+                    document.getElementById("zitplaatsen1").innerHTML = "Aantal zitplaatsen: " + res.reservatie[i].aantal_zitplaatsen;
                     document.getElementById("time1").innerHTML = res.reservatie[i].tijd;
                     document.getElementById("txtDate1").innerHTML = res.reservatie[i].datum;
 
 
                     break;
                 }
-                
+
 
             }
-           
-        
-       
-     } 
-    });
+
+
+
+        }
+    })
+})
 
 // let selection1 = document.querySelector('.car1');
 
@@ -166,11 +167,11 @@ selection.addEventListener('change', () => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
 
-                if(res.model[i].id == selection.value){
+                if (res.model[i].id == selection.value) {
                     console.log(res.model[i].brandstof);
 
                     document.getElementById("brandstof").innerHTML = res.model[i].brandstof;
-    
+
                     if (res.model[i].airco === 0) {
                         document.getElementById("airco").innerHTML = "Aicro niet inbegrepen";
                     } else {
@@ -181,11 +182,11 @@ selection.addEventListener('change', () => {
                     } else {
                         document.getElementById("automaat").innerHTML = "Wel een automaat";
                     }
-    
+
                     document.getElementById("aantal_zitplaatsen").innerHTML = "Aantal Zitplaatsen: " + res.model[i].aantal_zitplaatsen;
                     break;
                 }
-               
+
             }
         }
     });
@@ -267,9 +268,9 @@ function bindEvents() {
     connectButton("register", register);
     connectButton("login", login);
     connectButton("reserverenButton", reservatie)
-    connectButton("reservatieVerwijderen", reservatieVerwijderen)
-
     
+
+
     enableSubmits();
 }
 
@@ -406,4 +407,4 @@ function currentSlide(n) {
 
 // Calendar disable past dates
 var today = new Date().toISOString().split('T')[0];
-document.getElementsByName("txtDate")[0].setAttribute('min', today);
+// document.getElementsByName("txtDate")[0].setAttribute('min', today);
