@@ -24,6 +24,22 @@ function register(e) {
 
  var x = document.getElementById('reservationPageBekijken')
 
+
+ function reservatieVerwijderen(){
+ 
+    api("reservatie", 'PATCH').then((res) => {
+        if (res.message == 'success') {
+        
+            alert("gelukt");
+
+            
+        }
+    });
+}
+
+reservatieVerwijderen()
+
+
 function reservatie(e) {
     // Fetch data from html
     api("me").then((res) => {
@@ -35,7 +51,8 @@ function reservatie(e) {
                 tijd: getValue("time"),
                 datum: getValue("txtDate"),
                 leveren: select.options[select.selectedIndex].value,
-                klant_id: res.user.id
+                klant_id: res.user.id,
+                check_reservatie: '1'
             }
 
             // Submit data to API
@@ -80,7 +97,7 @@ function laatReservatieZien(){
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
                 console.log(res.reservatie[i].model)
-                document.getElementById("selection1").innerHTML += '<option value="' + res.reservatie[i].auto_id + '">' + res.reservatie[i].model + '</option>';
+                document.getElementById("selection1").innerHTML += '<option value="' + res.reservatie[i].id + '">' + res.reservatie[i].model + '</option>';
             }
            
 
@@ -89,14 +106,34 @@ function laatReservatieZien(){
 
 }
 
-let selection1 = document.querySelector('.carSelection1');
+let selection1 = document.querySelector('#selection1');
 
 selection1.addEventListener('change',() => {
     api("reservatie", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
-                console.log(res.reservatie[selection1.value].model);
-                document.getElementById("brandstof1").innerHTML = res.reservatie[selection1.value].model;
+                if(res.reservatie[i].id== selection1.value){
+
+                    console.log(res.reservatie[i]);
+                    document.getElementById("brandstof1").innerHTML = "Brandstof: "+ res.reservatie[i].brandstof;
+                    if (res.reservatie[i].airco === 0) {
+                        document.getElementById("airco1").innerHTML = "Aicro niet inbegrepen";
+                    } else {
+                        document.getElementById("airco1").innerHTML = "Airco wel inbegrepen";
+                    }
+                    if (res.reservatie[i].automaat === 0) {
+                        document.getElementById("automaat1").innerHTML = "Geen automaat";
+                    } else {
+                        document.getElementById("automaat1").innerHTML = "Wel een automaat";
+                    }
+                    document.getElementById("zitplaatsen1").innerHTML ="Aantal zitplaatsen: "+ res.reservatie[i].aantal_zitplaatsen;
+                    document.getElementById("time1").innerHTML = res.reservatie[i].tijd;
+                    document.getElementById("txtDate1").innerHTML = res.reservatie[i].datum;
+
+
+                    break;
+                }
+                
 
             }
            
@@ -109,6 +146,7 @@ selection1.addEventListener('change',() => {
 
 
 })
+
 
 
 
@@ -134,22 +172,27 @@ selection.addEventListener('change', () => {
     api("car", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
-                console.log(res.model[selection.value].brandstof);
 
-                document.getElementById("brandstof").innerHTML = res.model[selection.value].brandstof;
+                if(res.model[i].id == selection.value){
+                    console.log(res.model[i].brandstof);
 
-                if (res.model[selection.value].airco === 0) {
-                    document.getElementById("airco").innerHTML = "Aicro niet inbegrepen";
-                } else {
-                    document.getElementById("airco").innerHTML = "Airco wel inbegrepen";
+                    document.getElementById("brandstof").innerHTML = res.model[i].brandstof;
+    
+                    if (res.model[i].airco === 0) {
+                        document.getElementById("airco").innerHTML = "Aicro niet inbegrepen";
+                    } else {
+                        document.getElementById("airco").innerHTML = "Airco wel inbegrepen";
+                    }
+                    if (res.model[i].automaat === 0) {
+                        document.getElementById("automaat").innerHTML = "Geen automaat";
+                    } else {
+                        document.getElementById("automaat").innerHTML = "Wel een automaat";
+                    }
+    
+                    document.getElementById("aantal_zitplaatsen").innerHTML = "Aantal Zitplaatsen: " + res.model[i].aantal_zitplaatsen;
+                    break;
                 }
-                if (res.model[selection.value].automaat === 0) {
-                    document.getElementById("automaat").innerHTML = "Geen automaat";
-                } else {
-                    document.getElementById("automaat").innerHTML = "Wel een automaat";
-                }
-
-                document.getElementById("aantal_zitplaatsen").innerHTML = "Aantal Zitplaatsen: " + res.model[selection.value].aantal_zitplaatsen;
+               
             }
         }
     });
@@ -233,6 +276,9 @@ function bindEvents() {
     connectButton("register", register);
     connectButton("login", login);
     connectButton("reserverenButton", reservatie)
+    connectButton("reservatieVerwijderen", reservatieVerwijderen)
+
+    
     enableSubmits();
 }
 

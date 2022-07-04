@@ -6,7 +6,7 @@ from flask_jwt_extended import (
     create_access_token,
     get_jwt_identity
 )
-
+from datetime import date
 
 def create_user():
     # Parse all arguments for validity
@@ -49,14 +49,44 @@ def show_car():
     # qry om users te laten zien
     qry = '''
     SELECT  *
-         FROM `auto`
+         FROM `auto` where `check` = 0
 
 
     '''
+#         SELECT *
+# FROM auto
+# INNER JOIN reservatie
+# ON auto.id = reservatie.auto_id
+# WHERE check_reservatie = 0
 
     model = DB.all(qry)
 
     return {'message': 'success', 'model': model}, 201
+
+
+@jwt_required()
+def reservatieVerwijderen():
+    user = get_jwt_identity()
+
+    args = request.get_json()
+    print(user)
+
+    qry = '''
+        UPDATE reservatie
+    SET "reservatie.check_reservatie" = 1
+    WHERE id = :reservatie.id
+    '''
+
+    
+
+
+   
+    DB.update(qry)
+    return {'message': 'success',}, 201
+
+
+
+
 
 @jwt_required()
 def reservatiePosten():
@@ -68,19 +98,29 @@ def reservatiePosten():
     qry = '''
     INSERT INTO
         `reservatie`
-            (`tijd`, `datum`, `auto_id`, `leveren`, `user_id`)
+            (`tijd`, `datum`, `auto_id`, `leveren`, `user_id`, `creation_date`, `check_reservatie`)
         VALUES
-            (:tijd, :datum, :auto_id, :leveren, :user_id)
+            (:tijd, :datum, :auto_id, :leveren, :user_id, :creation_date, :check_reservatie)
     '''
+
+    
     data = {
         "tijd": args["tijd"],
         "datum": args["datum"],
         "auto_id": args["auto_id"],
         "leveren": args["leveren"],
-        "user_id": user["id"]
+        "user_id": user["id"],
+        "creation_date": date.today(),
+        "check_reservatie": "0"
         }
     id = DB.insert(qry, data)
 
+    qry = '''
+        UPDATE auto
+    SET "check" = 1
+    WHERE id = :auto_id
+    '''
+    DB.update(qry, data)
     return {'message': 'success', 'id': id}, 201
 
 
@@ -93,7 +133,7 @@ def show_reservatie():
 FROM reservatie
 inner JOIN auto
 on reservatie.auto_id = auto.id
-WHERE user_id = :user_id
+WHERE user_id = :user_id AND reservatie.check_reservatie= 0 AND date('now','+1 day') > creation_date
 
 
     '''
