@@ -230,12 +230,20 @@
             <select class="carSelection" id="selection1">
             </select>
 
-            <label class="specsLabel"  id="txtDate2" name="txtDate">Datum</label>
-            <label class="specsLabel" id="time2" name="time">Tijd</label> 
-            <label class="specsLabel" id="brandstof2">Type brandstof</label>
-            <label class="specsLabel" id="airco2">Inbegrepen Airco</label>
-            <label class="specsLabel" id="automaat2">Inbegrepen Automaat</label>
-            <label class="specsLabel" id="zitplaatsen2">Aantal zitplaatsen</label>
+            <label class="specsLabel"  id="txtDate1" name="txtDate">Datum</label>
+            <label class="specsLabel" id="time1" name="time">Tijd</label> 
+            <input type="text">
+            <label class="specsLabel" id="brandstof1">Type brandstof</label>
+            <input type="text">
+
+            <label class="specsLabel" id="airco1">Inbegrepen Airco</label>
+            <input type="text">
+
+            <label class="specsLabel" id="automaat1">Inbegrepen Automaat</label>
+            <input type="text">
+
+            <label class="specsLabel" id="zitplaatsen1">Aantal zitplaatsen</label>
+
 
 
             <button id="reserverenVerwijderen">Reservering veranderen</button>
@@ -266,10 +274,11 @@
 
         <input type="date" id="txtDate" name="txtDate">
         <input type="time" id="time" name="time">
-        <label class="specsLabel" id="brandstof">Type brandstof</label>
-        <label class="specsLabel" id="airco">Inbegrepen Airco</label>
-        <label class="specsLabel" id="automaat">Inbegrepen Automaat</label>
-        <label class="specsLabel" id="aantal_zitplaatsen">Aantal zitplaatsen</label>
+        <label class="specsLabel" id="model2">Type model</label>
+        <label class="specsLabel" id="brandstof2">Type brandstof</label>
+        <label class="specsLabel" id="airco2">Inbegrepen Airco</label>
+        <label class="specsLabel" id="automaat2">Inbegrepen Automaat</label>
+        <label class="specsLabel" id="zitplaatsen2">Aantal zitplaatsen</label>
 
 
         <select class="specsLabel" id="selectionLeveren">
@@ -277,8 +286,71 @@
             <option value="0">Niet leveren</option>
 
         </select>
-        <button onclick="reservatieLatenZien();" id="reserverenButton">ADMIN</button>
+        <button id="auto_wijzigen">Auto wijzigen</button>
+        <button  id="auto_toevoegen">Auto toevoegen</button>
     </div>
+</div>
+
+ <!-- auto toevoegen page -->
+
+ <div class="container hidden" id="autoToevoegen">
+    <nav>
+        <div class="logo">
+            <img class="logo-size" src="Screenshot_2.png">
+        </div>
+        <p class="logo-letters">Sedecrem-Zneb</p>
+
+        <ul class="nav-links">
+            <li><a href="index.html">home</a></li>
+            <li><a onclick="showPage('loginPage')">login</a></li>
+        </ul>
+    </nav>
+    <div class="reservationForm">
+     
+       
+
+        <input type="text" id="model4" placeholder="Car Name" name="model">
+        <input type="text" id="brandstof4" placeholder="Brandstof" name="Brandstof">
+        <input type="text" id="airco4" placeholder="Airco" name="airco">
+        <input type="text" id="automaat4" placeholder="Automaat" name="automaat">
+        <input type="text" id="aantal_zitplaatsen4" placeholder="Aantal zitplaatsen" name="zitplaatsen">
+
+        <button  id="auto_toevoegen1">Auto toevoegen</button>
+     
+    </div>
+</div>
+
+
+
+ <!-- auto wijzigen page -->
+
+ <div class="container hidden" id="autoWijzigen">
+    <nav>
+        <div class="logo">
+            <img class="logo-size" src="Screenshot_2.png">
+        </div>
+        <p class="logo-letters">Sedecrem-Zneb</p>
+
+        <ul class="nav-links">
+            <li><a href="index.html">home</a></li>
+            <li><a onclick="showPage('loginPage')">login</a></li>
+        </ul>
+    </nav>
+    <div class="reservationForm">
+    <select class="carSelection" id="selection5">
+
+    </select>
+    <input type="text" id="model6" class="test4" placeholder="Model Name" name="model">
+    <input type="text" id="brandstof6" class="test" placeholder="Brandstof" name="model">
+    <input type="text" id="airco6" class="test1" placeholder="airco" name="model">
+    <input type="text" id="automaat6" class="test2" placeholder="automaat" name="model">
+    <input type="text" id="aantal_zitplaatsen6" class="test3" placeholder="aantal_zitplaatsen" name="model">
+
+    <button  id="auto_toevoegen2">Auto wijzigen</button>
+
+</div>
+
+    
 </div>
 </body>
 <script src="main.js"></script>

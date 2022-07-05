@@ -22,6 +22,36 @@ function register(e) {
     });
 }
 
+
+function autoToevoegen(){
+
+    data = {
+        model: getValue("model4"),
+        brandstof: getValue("brandstof4"),
+        airco: getValue("airco4"),
+        automaat: getValue("automaat4"),
+        aantal_zitplaatsen: getValue("aantal_zitplaatsen4")
+
+    };
+
+
+ // Submit data to API
+ api("car", 'POST', data).then((res) => {
+    if (res.message == 'success') {
+        alert("car created");
+    } else {
+        alert("Credentials are incorrect");
+    }
+});
+
+
+
+}
+
+
+
+
+
 var x = document.getElementById('reservationPageBekijken')
 
 
@@ -82,12 +112,26 @@ function admin() {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
                 console.log(res.model[i]);
-                document.getElementById("carkeuze").innerHTML += '<option value="' + res.model[i].auto_id + '">' + res.model[i].firstname + " "
-                    + res.model[i].lastname + "(Car " + res.model[i].model + ")" + '</option>';
+                document.getElementById("carkeuze").innerHTML += '<option value="' + res.model[i].reservatie_id + '">' + res.model[i].firstname + " "
+                    + res.model[i].lastname + "(ID " + res.model[i].reservatie_id + ")" + '</option>';
             }
         }
     });
 }
+
+function carWijzig(){
+    api("carr", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.model.length; i++) {
+                document.getElementById("selection5").innerHTML += '<option value="' + res.model[i].id + '">' + res.model[i].model + '</option>';
+            }
+        }
+    });
+
+}
+
+
+
 
 function laatReservatieZien() {
     api("reservatie", 'GET').then((res) => {
@@ -100,16 +144,74 @@ function laatReservatieZien() {
     });
 }
 
+let selectionWijzig = document.querySelector('#selection5');
+var hoi =[]
+
+selectionWijzig.addEventListener('change', () => {
+    api("carr", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.model.length; i++) {
+                if (res.model[i].id == selectionWijzig.value) {
+                    document.getElementsByClassName("test4")[0].placeholder = res.model[i].model;
+
+                    document.getElementsByClassName("test")[0].placeholder = res.model[i].brandstof;
+                    if (res.model[i].airco === 0) {
+                        document.getElementsByClassName("test1")[0].placeholder = "Aicro niet inbegrepen";
+                    } else {
+                        document.getElementsByClassName("test1")[0].placeholder = "Airco wel inbegrepen";
+                    }
+                    if (res.model[i].automaat === 0) {
+                        document.getElementsByClassName("test2")[0].placeholder = "Geen automaat";
+                    } else {
+                        document.getElementsByClassName("test2")[0].placeholder = "Wel een automaat";
+                    }
+                    hoi.push(res.model[i].id);
+                   
+                    document.getElementsByClassName("test3")[0].placeholder = res.model[i].aantal_zitplaatsen;
+                    console.log(res.model[i].brandstof)
+                    console.log(res.model[i].aantal_zitplaatsen)
+
+
+                    break;
+                }
+                
+
+        }
+
+            
+        }
+    })
+})
+
+function popsmoke(){
+
+    console.log(hoi)
+}
+
 let selectionAdmin = document.querySelector('#carkeuze');
 
 selectionAdmin.addEventListener('change', () => {
     api("admin", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
-                if (res.model[i].id == selectionAdmin.value) {
-
-                    console.log(res.model[i].auto_id);
-                    document.getElementById("brandstof1").innerHTML = "Brandstof: " + res.reservatie[i].brandstof;
+                if (res.model[i].reservatie_id == selectionAdmin.value) {
+                    console.log(res.model[i])
+                    
+                    document.getElementById("model2").innerHTML = "Model: " + res.model[i].model;
+                    document.getElementById("brandstof2").innerHTML = "Brandstof: " + res.model[i].brandstof;
+                    document.getElementById("airco2").innerHTML = "Airco : " + res.model[i].airco;
+                    if (res.model[i].airco === 0) {
+                        document.getElementById("airco2").innerHTML = "Aicro niet inbegrepen";
+                    } else {
+                        document.getElementById("airco2").innerHTML = "Airco wel inbegrepen";
+                    }
+                    if (res.model[i].automaat === 0) {
+                        document.getElementById("automaat2").innerHTML = "Geen automaat";
+                    } else {
+                        document.getElementById("automaat2").innerHTML = "Wel een automaat";
+                    }
+                    document.getElementById("zitplaatsen2").innerHTML = "Aantal zitplaatsen: " + res.model[i].aantal_zitplaatsen;
+                   
 
                     break;
                 }
@@ -309,11 +411,22 @@ function showPage(id) {
     document.getElementById(id).style.display = "block";
 }
 
+function showAutoToevoegen(){
+    showPage('autoToevoegen')
+}
+function showAutoWijzigen(){
+    showPage('autoWijzigen')
+    carWijzig()
+}
+
 function bindEvents() {
     connectButton("register", register);
     connectButton("login", login);
-    connectButton("reserverenButton", reservatie)
-
+    connectButton("reserverenButton", reservatie);
+    connectButton("auto_toevoegen", showAutoToevoegen);
+    connectButton("auto_wijzigen", showAutoWijzigen);
+    connectButton("auto_toevoegen1", autoToevoegen);
+    connectButton("auto_toevoegen2", popsmoke);
 
 
     enableSubmits();
