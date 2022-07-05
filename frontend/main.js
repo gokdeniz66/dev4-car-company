@@ -48,7 +48,41 @@ function autoToevoegen(){
 
 }
 
+function autoVeranderen(){
+    let x = hoi.toString()
+    console.log(x)
 
+    data = {
+        model: getValue("model6"),
+        brandstof: getValue("brandstof6"),
+        airco: getValue("airco6"),
+        automaat: getValue("automaat6"),
+        aantal_zitplaatsen: getValue("aantal_zitplaatsen6"),
+        id: x
+
+    };
+
+
+ // Submit data to API
+ api("car", 'PATCH', data).then((res) => {
+    if (res.message == 'success') {
+      showPage('adminPage')
+    
+    } else {
+        alert("Credentials are incorrect");
+    }
+});
+
+
+
+}
+
+
+
+function popsmoke(){
+    let x = hoi.toString()
+    console.log(x)
+}
 
 
 
@@ -183,10 +217,7 @@ selectionWijzig.addEventListener('change', () => {
     })
 })
 
-function popsmoke(){
 
-    console.log(hoi)
-}
 
 let selectionAdmin = document.querySelector('#carkeuze');
 
@@ -426,7 +457,7 @@ function bindEvents() {
     connectButton("auto_toevoegen", showAutoToevoegen);
     connectButton("auto_wijzigen", showAutoWijzigen);
     connectButton("auto_toevoegen1", autoToevoegen);
-    connectButton("auto_toevoegen2", popsmoke);
+    connectButton("auto_toevoegen2",autoVeranderen );
 
 
     enableSubmits();

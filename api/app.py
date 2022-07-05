@@ -26,7 +26,7 @@ app.add_url_rule('/auth', None, login, methods=['POST'])
 app.add_url_rule('/me', None, me, methods=['GET'])
 app.add_url_rule('/users', None, show_user, methods=['GET'])
 app.add_url_rule('/carr', None, show_car2, methods=['GET'])
-app.add_url_rule('/x', None, autoWijzigen, methods=['PATCH'])
+app.add_url_rule('/car', None, autoWijzigen, methods=['PATCH'])
 
 app.add_url_rule('/car', None, show_car, methods=['GET'])
 app.add_url_rule('/reservatie', None, show_reservatie, methods=['GET'])
