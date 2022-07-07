@@ -22,14 +22,14 @@ function register(e) {
     });
 }
 
-function showDelete(){
+function showDelete() {
 
     showPage("autoVerwijderen")
     carVerwijderen()
 }
 
 
-function autoToevoegen(){
+function autoToevoegen() {
 
     data = {
         model: getValue("model4"),
@@ -41,14 +41,14 @@ function autoToevoegen(){
     };
 
 
- // Submit data to API
- api("car", 'POST', data).then((res) => {
-    if (res.message == 'success') {
-        alert("car created");
-    } else {
-        alert("Credentials are incorrect");
-    }
-});
+    // Submit data to API
+    api("car", 'POST', data).then((res) => {
+        if (res.message == 'success') {
+            alert("car created");
+        } else {
+            alert("Credentials are incorrect");
+        }
+    });
 
 
 
@@ -56,10 +56,10 @@ function autoToevoegen(){
 
 
 
-function reservatieVeranderen(){
-    
+function reservatieVeranderen() {
+
     let x = idWijzig.toString()
-    
+
 
     data = {
         tijd: getValue("tijd10"),
@@ -70,14 +70,14 @@ function reservatieVeranderen(){
     };
 
 
- // Submit data to API
- api("reservatie", 'PATCH', data).then((res) => {
-    if (res.message == 'success') {
-        alert(" Reservatie veranderd");
-    } else {
-        alert("Credentials are incorrect");
-    }
-});
+    // Submit data to API
+    api("reservatie", 'PATCH', data).then((res) => {
+        if (res.message == 'success') {
+            alert(" Reservatie veranderd");
+        } else {
+            alert("Credentials are incorrect");
+        }
+    });
 
 
 
@@ -138,27 +138,27 @@ function autoVeranderen() {
 
 }
 
-function autoVerwijderen(){
+function autoVerwijderen() {
     let x = verwijderID.toString()
     console.log(x)
 
     data = {
-    
+
         id: x
 
     };
 
 
- // Submit data to API
- api("car", 'DELETE', data).then((res) => {
-    if (res.message == 'success') {
-      alert("auto verwijderd")
-    
-    } else {
-        alert("Credentials are incorrect");
-    }
-});
+    // Submit data to API
+    api("car", 'DELETE', data).then((res) => {
+        if (res.message == 'success') {
+            alert("auto verwijderd")
 
+        } else {
+            alert("Credentials are incorrect");
+        }
+    })
+};
 
 var x = document.getElementById('reservationPageBekijken')
 
@@ -238,7 +238,7 @@ function carWijzig() {
 
 }
 
-function carVerwijderen(){
+function carVerwijderen() {
     api("carr", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
@@ -271,7 +271,7 @@ function ReservatieWijzigen() {
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
                 console.log(res.reservatie[i].model)
-                document.getElementById("reservering_veranderen").innerHTML += '<option value="' + res.reservatie[i]. reservatieID+ '">' + res.reservatie[i].model + '</option>';
+                document.getElementById("reservering_veranderen").innerHTML += '<option value="' + res.reservatie[i].reservatieID + '">' + res.reservatie[i].model + '</option>';
             }
         }
     });
@@ -281,7 +281,7 @@ function reservatieVerwijderen() {
     api("reservatie1", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
-            
+
                 document.getElementById("x").innerHTML += '<option value="' + res.reservatie[i].reservatieID + '">' + res.reservatie[i].model + '</option>';
             }
         }
@@ -296,16 +296,16 @@ function reservatieVerwijderen() {
 
 
 let selectionVerwijderReservatie = document.querySelector('#x');
-var resVer =[]
+var resVer = []
 
 selectionVerwijderReservatie.addEventListener('change', () => {
     api("reservatie1", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
                 if (res.reservatie[i].reservatieID == selectionVerwijderReservatie.value) {
-                   
 
-                   
+
+
                     console.log(res.reservatie[i].reservatieID);
                     resVer.push(res.reservatie[i].reservatieID);
 
@@ -313,9 +313,9 @@ selectionVerwijderReservatie.addEventListener('change', () => {
                     break;
                 }
 
-        }
+            }
 
-            
+
         }
     })
 })
@@ -324,7 +324,7 @@ selectionVerwijderReservatie.addEventListener('change', () => {
 
 
 let selectionWijzigReservatie = document.querySelector('#reservering_veranderen');
-var idWijzig =[]
+var idWijzig = []
 
 selectionWijzigReservatie.addEventListener('change', () => {
     api("reservatie1", 'GET').then((res) => {
@@ -334,17 +334,17 @@ selectionWijzigReservatie.addEventListener('change', () => {
                     document.getElementsByClassName("test10")[0].placeholder = res.reservatie[i].datum;
                     document.getElementsByClassName("test11")[0].placeholder = res.reservatie[i].tijd;
 
-                   
+
                     idWijzig.push(res.reservatie[i].reservatieID);
-            
+
 
                     break;
                 }
-                
 
-        }
 
-            
+            }
+
+
         }
     })
 })
@@ -407,8 +407,8 @@ selectionWijzig.addEventListener('change', () => {
 })
 
 
-let selectionVerwijder= document.querySelector('#selection6');
-var verwijderID =[]
+let selectionVerwijder = document.querySelector('#selection6');
+var verwijderID = []
 
 
 selectionVerwijder.addEventListener('change', () => {
@@ -416,17 +416,17 @@ selectionVerwijder.addEventListener('change', () => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
                 if (res.model[i].id == selectionVerwijder.value) {
-                   
+
                     verwijderID.push(res.model[i].id);
                     console.log(res.model[i].id)
 
                     break;
                 }
-                
 
-        }
 
-            
+            }
+
+
         }
     })
 })
@@ -662,19 +662,19 @@ function showAutoWijzigen() {
     carWijzig()
 }
 
-function x (){
+function x() {
     showPage('registerPage')
 }
 
-function showVerander(){
+function showVerander() {
 
     showPage("veranderenPage")
     ReservatieWijzigen()
-   
+
 }
 
 
-function showVerwijderen(){
+function showVerwijderen() {
     showPage('verwijderenPage')
     reservatieVerwijderen()
 }
@@ -686,19 +686,19 @@ function bindEvents() {
     connectButton("auto_toevoegen", showAutoToevoegen);
     connectButton("auto_wijzigen", showAutoWijzigen);
     connectButton("auto_toevoegen1", autoToevoegen);
-    connectButton("auto_toevoegen2",autoVeranderen );
-    connectButton("auto_verwijderen",showDelete );
-    connectButton("auto_toevoegen3",autoVerwijderen );
-    connectButton("auto_verwijderen4",showVerander);
-    connectButton("reservatie_wijzigen",reservatieVeranderen);
-    connectButton("auto_verwijderen5",showVerwijderen);
+    connectButton("auto_toevoegen2", autoVeranderen);
+    connectButton("auto_verwijderen", showDelete);
+    connectButton("auto_toevoegen3", autoVerwijderen);
+    connectButton("auto_verwijderen4", showVerander);
+    connectButton("reservatie_wijzigen", reservatieVeranderen);
+    connectButton("auto_verwijderen5", showVerwijderen);
 
 
-    
+
 
     connectButton("auto_toevoegen2", autoVeranderen);
 
-    
+
 
     enableSubmits();
 }
