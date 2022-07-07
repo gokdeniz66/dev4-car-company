@@ -84,7 +84,7 @@ function reservatieVeranderen(){
 }
 
 
-function autoToevoegen(){
+function autoToevoegen() {
 
     data = {
         model: getValue("model4"),
@@ -96,20 +96,20 @@ function autoToevoegen(){
     };
 
 
- // Submit data to API
- api("car", 'POST', data).then((res) => {
-    if (res.message == 'success') {
-        alert("car created");
-    } else {
-        alert("Credentials are incorrect");
-    }
-});
+    // Submit data to API
+    api("car", 'POST', data).then((res) => {
+        if (res.message == 'success') {
+            alert("car created");
+        } else {
+            alert("Credentials are incorrect");
+        }
+    });
 
 
 
 }
 
-function autoVeranderen(){
+function autoVeranderen() {
     let x = hoi.toString()
     console.log(x)
 
@@ -124,15 +124,15 @@ function autoVeranderen(){
     };
 
 
- // Submit data to API
- api("car", 'PATCH', data).then((res) => {
-    if (res.message == 'success') {
-      showPage('adminPage')
-    
-    } else {
-        alert("Credentials are incorrect");
-    }
-});
+    // Submit data to API
+    api("car", 'PATCH', data).then((res) => {
+        if (res.message == 'success') {
+            showPage('adminPage')
+
+        } else {
+            alert("Credentials are incorrect");
+        }
+    });
 
 
 
@@ -161,6 +161,12 @@ function autoVerwijderen(){
 
 
 
+<<<<<<< HEAD
+=======
+function popsmoke() {
+    let x = hoi.toString()
+    console.log(x)
+>>>>>>> cb04230a7f0bed0932c26fd4863f1f76bbb7f6d1
 }
 
 
@@ -232,7 +238,7 @@ function admin() {
     });
 }
 
-function carWijzig(){
+function carWijzig() {
     api("carr", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.model.length; i++) {
@@ -260,7 +266,8 @@ function laatReservatieZien() {
     api("reservatie", 'GET').then((res) => {
         if (res.message == 'success') {
             for (i = 0; i < res.reservatie.length; i++) {
-                console.log(res.reservatie[i].model)
+                console.log(res.reservatie[i].model);
+                console.log("laat reservering zien selectie");
                 document.getElementById("selection1").innerHTML += '<option value="' + res.reservatie[i].id + '">' + res.reservatie[i].model + '</option>';
             }
         }
@@ -372,7 +379,7 @@ selectionWijzigReservatie.addEventListener('change', () => {
 
 
 let selectionWijzig = document.querySelector('#selection5');
-var hoi =[]
+var hoi = []
 
 selectionWijzig.addEventListener('change', () => {
     api("carr", 'GET').then((res) => {
@@ -393,7 +400,7 @@ selectionWijzig.addEventListener('change', () => {
                         document.getElementsByClassName("test2")[0].placeholder = "Wel een automaat";
                     }
                     hoi.push(res.model[i].id);
-                   
+
                     document.getElementsByClassName("test3")[0].placeholder = res.model[i].aantal_zitplaatsen;
                     console.log(res.model[i].brandstof)
                     console.log(res.model[i].aantal_zitplaatsen)
@@ -401,11 +408,11 @@ selectionWijzig.addEventListener('change', () => {
 
                     break;
                 }
-                
 
-        }
 
-            
+            }
+
+
         }
     })
 })
@@ -444,7 +451,7 @@ selectionAdmin.addEventListener('change', () => {
             for (i = 0; i < res.model.length; i++) {
                 if (res.model[i].reservatie_id == selectionAdmin.value) {
                     console.log(res.model[i])
-                    
+
                     document.getElementById("model2").innerHTML = "Model: " + res.model[i].model;
                     document.getElementById("brandstof2").innerHTML = "Brandstof: " + res.model[i].brandstof;
                     document.getElementById("airco2").innerHTML = "Airco : " + res.model[i].airco;
@@ -459,7 +466,7 @@ selectionAdmin.addEventListener('change', () => {
                         document.getElementById("automaat2").innerHTML = "Wel een automaat";
                     }
                     document.getElementById("zitplaatsen2").innerHTML = "Aantal zitplaatsen: " + res.model[i].aantal_zitplaatsen;
-                   
+
 
                     break;
                 }
@@ -513,29 +520,6 @@ selection1.addEventListener('change', () => {
     })
 })
 
-// let selection1 = document.querySelector('.car1');
-
-// selection1.addEventListener('change',() => {
-//     api("reservatie", 'GET').then((res) => {
-//         if (res.message == 'success') {
-//             for (i = 0; i < res.reservatie.length; i++) {
-//                 console.log(res.reservatie[selection1.value].model);
-//                 document.getElementById("brandstof1").innerHTML = res.reservatie[selection1.value].model;
-
-//             }
-
-
-//         } 
-//     });
-// })
-
-
-
-
-
-
-
-
 
 
 const select = document.getElementById('selectionLeveren');
@@ -557,6 +541,7 @@ selection.addEventListener('change', () => {
 
                 if (res.model[i].id == selection.value) {
                     console.log(res.model[i].brandstof);
+                    console.log("reserveren pagina");
 
                     document.getElementById("brandstof").innerHTML = res.model[i].brandstof;
 
@@ -648,6 +633,27 @@ function reservatieLatenZien() {
     showPage('reservationPageBekijken');
 }
 
+// instant disable button by reservation page
+const template2 = document.getElementById('selection');
+const buttonReservation = document.getElementById('reserverenButton');
+if (template2.value == "template") {
+    buttonReservation.style.background = "lightgray";
+    buttonReservation.disabled = true;
+}
+// disable button by clicking selection items
+const template = document.getElementById('selection');
+template.addEventListener('change', () => {
+    const template = document.getElementById('selection');
+    const buttonReservation = document.getElementById('reserverenButton');
+    if (template.value == "template") {
+        buttonReservation.style.background = "lightgray";
+        buttonReservation.disabled = true;
+    } else {
+        buttonReservation.style.background = "#00adef";
+        buttonReservation.disabled = false;
+    }
+})
+
 
 // Helper functions
 
@@ -659,10 +665,10 @@ function showPage(id) {
     document.getElementById(id).style.display = "block";
 }
 
-function showAutoToevoegen(){
+function showAutoToevoegen() {
     showPage('autoToevoegen')
 }
-function showAutoWijzigen(){
+function showAutoWijzigen() {
     showPage('autoWijzigen')
     carWijzig()
 }
@@ -691,6 +697,7 @@ function bindEvents() {
     connectButton("auto_toevoegen", showAutoToevoegen);
     connectButton("auto_wijzigen", showAutoWijzigen);
     connectButton("auto_toevoegen1", autoToevoegen);
+<<<<<<< HEAD
     connectButton("auto_toevoegen2",autoVeranderen );
     connectButton("auto_verwijderen",showDelete );
     connectButton("auto_toevoegen3",autoVerwijderen );
@@ -701,6 +708,9 @@ function bindEvents() {
 
     
 
+=======
+    connectButton("auto_toevoegen2", autoVeranderen);
+>>>>>>> cb04230a7f0bed0932c26fd4863f1f76bbb7f6d1
 
     
 
@@ -840,4 +850,4 @@ function currentSlide(n) {
 
 // Calendar disable past dates
 var today = new Date().toISOString().split('T')[0];
-// document.getElementsByName("txtDate")[0].setAttribute('min', today);
+document.getElementsByName("txtDate")[0].setAttribute('min', today);
