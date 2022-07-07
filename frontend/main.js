@@ -160,17 +160,6 @@ function autoVerwijderen(){
 });
 
 
-
-<<<<<<< HEAD
-=======
-function popsmoke() {
-    let x = hoi.toString()
-    console.log(x)
->>>>>>> cb04230a7f0bed0932c26fd4863f1f76bbb7f6d1
-}
-
-
-
 var x = document.getElementById('reservationPageBekijken')
 
 
@@ -697,7 +686,6 @@ function bindEvents() {
     connectButton("auto_toevoegen", showAutoToevoegen);
     connectButton("auto_wijzigen", showAutoWijzigen);
     connectButton("auto_toevoegen1", autoToevoegen);
-<<<<<<< HEAD
     connectButton("auto_toevoegen2",autoVeranderen );
     connectButton("auto_verwijderen",showDelete );
     connectButton("auto_toevoegen3",autoVerwijderen );
@@ -708,9 +696,7 @@ function bindEvents() {
 
     
 
-=======
     connectButton("auto_toevoegen2", autoVeranderen);
->>>>>>> cb04230a7f0bed0932c26fd4863f1f76bbb7f6d1
 
     
 
