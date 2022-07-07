@@ -178,8 +178,117 @@ WHERE id = :id;
     
     return {'message': 'success', 'id': model}, 201
 
+@jwt_required()
+def reservatieVerwijderen():
+    user = get_jwt_identity()
+
+    args = request.get_json()
+    print(user)
+
+    qry = '''
+    DELETE FROM reservatie WHERE id = :id;
+    '''
+
+    
+    data = {
+        "id": args["id"]
+    
+        }
+    id = DB.delete(qry, data)
+
+    qry = '''
+        UPDATE auto
+    SET "check" = 0
+    WHERE id = :auto_id
+    '''
+    DB.update(qry, data)
+    return {'message': 'success', 'id': id}, 201
 
 
+@jwt_required()
+def reservatieWijzigen():
+    user = get_jwt_identity()
+
+    args = request.get_json()
+    print(user)
+
+    qry = '''
+    UPDATE reservatie
+SET datum = :datum, tijd = :tijd
+WHERE id = :id;
+
+
+
+    '''
+    
+    data = {
+        "datum": args["datum"],
+        "tijd": args["tijd"],
+        "id": args["id"]
+       
+        }
+    model = DB.update(qry, data)
+   
+    
+    return {'message': 'success', 'id': model}, 201
+
+
+@jwt_required()
+def autoVerwijderen():
+    user = get_jwt_identity()
+
+    args = request.get_json()
+    print(user)
+
+    qry = '''
+    DELETE FROM auto WHERE id= :id
+
+
+    '''
+    data = {
+    
+        "id": args["id"]
+       
+        }
+    model = DB.update(qry,data)
+   
+    
+    return {'message': 'success', 'id': model}, 201
+    
+
+
+
+@jwt_required()
+def reservatieVerwijderen():
+    user = get_jwt_identity()
+
+    args = request.get_json()
+    print(user)
+
+    qry = '''
+    DELETE FROM reservatie  WHERE id= :id
+
+
+    '''
+    data = {
+    
+        "id": args["id"]
+       
+        }
+    model = DB.update(qry,data)
+   
+    
+    qry = '''
+        UPDATE auto
+    SET "check" = 0
+    WHERE id = :id
+    '''
+    DB.update(qry, data)
+
+
+
+
+    return {'message': 'success', 'id': model}, 201
 @jwt_required()
 def reservatiePosten():
     user = get_jwt_identity()
@@ -221,7 +330,30 @@ def show_reservatie():
     user = get_jwt_identity()
     # qry om users te laten zien
     qry = '''
- SELECT *
+SELECT *
+FROM reservatie
+inner JOIN auto
+on reservatie.auto_id = auto.id
+
+WHERE user_id = :user_id AND reservatie.check_reservatie= 0 AND date('now','+1 day') > creation_date
+
+
+    '''
+    data = {
+        "user_id": user["id"]
+    }
+    reservatie = DB.all(qry, data)
+    
+
+    return {'message': 'success', 'reservatie': reservatie}, 201    
+
+
+@jwt_required()
+def show_reservatie1():
+    user = get_jwt_identity()
+    # qry om users te laten zien
+    qry = '''
+SELECT reservatie.id AS reservatieID, reservatie.datum, reservatie.tijd , reservatie.user_id, auto.id AS autoID, auto.model
 FROM reservatie
 inner JOIN auto
 on reservatie.auto_id = auto.id

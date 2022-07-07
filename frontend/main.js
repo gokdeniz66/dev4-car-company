@@ -22,6 +22,67 @@ function register(e) {
     });
 }
 
+function showDelete(){
+
+    showPage("autoVerwijderen")
+    carVerwijderen()
+}
+
+
+function autoToevoegen(){
+
+    data = {
+        model: getValue("model4"),
+        brandstof: getValue("brandstof4"),
+        airco: getValue("airco4"),
+        automaat: getValue("automaat4"),
+        aantal_zitplaatsen: getValue("aantal_zitplaatsen4")
+
+    };
+
+
+ // Submit data to API
+ api("car", 'POST', data).then((res) => {
+    if (res.message == 'success') {
+        alert("car created");
+    } else {
+        alert("Credentials are incorrect");
+    }
+});
+
+
+
+}
+
+
+
+function reservatieVeranderen(){
+    
+    let x = idWijzig.toString()
+    
+
+    data = {
+        tijd: getValue("tijd10"),
+        datum: getValue("datum10"),
+        id: x
+
+
+    };
+
+
+ // Submit data to API
+ api("reservatie", 'PATCH', data).then((res) => {
+    if (res.message == 'success') {
+        alert(" Reservatie veranderd");
+    } else {
+        alert("Credentials are incorrect");
+    }
+});
+
+
+
+}
+
 
 function autoToevoegen(){
 
@@ -77,11 +138,29 @@ function autoVeranderen(){
 
 }
 
-
-
-function popsmoke(){
-    let x = hoi.toString()
+function autoVerwijderen(){
+    let x = verwijderID.toString()
     console.log(x)
+
+    data = {
+    
+        id: x
+
+    };
+
+
+ // Submit data to API
+ api("car", 'DELETE', data).then((res) => {
+    if (res.message == 'success') {
+      alert("auto verwijderd")
+    
+    } else {
+        alert("Credentials are incorrect");
+    }
+});
+
+
+
 }
 
 
@@ -164,6 +243,16 @@ function carWijzig(){
 
 }
 
+function carVerwijderen(){
+    api("carr", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.model.length; i++) {
+                document.getElementById("selection6").innerHTML += '<option value="' + res.model[i].id + '">' + res.model[i].model + '</option>';
+            }
+        }
+    });
+
+}
 
 
 
@@ -177,6 +266,110 @@ function laatReservatieZien() {
         }
     });
 }
+
+
+
+
+function ReservatieWijzigen() {
+    api("reservatie1", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.reservatie.length; i++) {
+                console.log(res.reservatie[i].model)
+                document.getElementById("reservering_veranderen").innerHTML += '<option value="' + res.reservatie[i]. reservatieID+ '">' + res.reservatie[i].model + '</option>';
+            }
+        }
+    });
+}
+
+function reservatieVerwijderen() {
+    api("reservatie1", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.reservatie.length; i++) {
+            
+                document.getElementById("x").innerHTML += '<option value="' + res.reservatie[i].reservatieID + '">' + res.reservatie[i].model + '</option>';
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
+let selectionVerwijderReservatie = document.querySelector('#x');
+var resVer =[]
+
+selectionVerwijderReservatie.addEventListener('change', () => {
+    api("reservatie1", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.reservatie.length; i++) {
+                if (res.reservatie[i].reservatieID == selectionVerwijderReservatie.value) {
+                   
+
+                   
+                    console.log(res.reservatie[i].reservatieID);
+                    resVer.push(res.reservatie[i].reservatieID);
+
+
+                    break;
+                }
+
+        }
+
+            
+        }
+    })
+})
+
+
+
+
+let selectionWijzigReservatie = document.querySelector('#reservering_veranderen');
+var idWijzig =[]
+
+selectionWijzigReservatie.addEventListener('change', () => {
+    api("reservatie1", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.reservatie.length; i++) {
+                if (res.reservatie[i].reservatieID == selectionWijzigReservatie.value) {
+                    document.getElementsByClassName("test10")[0].placeholder = res.reservatie[i].datum;
+                    document.getElementsByClassName("test11")[0].placeholder = res.reservatie[i].tijd;
+
+                   
+                    idWijzig.push(res.reservatie[i].reservatieID);
+            
+
+                    break;
+                }
+                
+
+        }
+
+            
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let selectionWijzig = document.querySelector('#selection5');
 var hoi =[]
@@ -217,6 +410,30 @@ selectionWijzig.addEventListener('change', () => {
     })
 })
 
+
+let selectionVerwijder= document.querySelector('#selection6');
+var verwijderID =[]
+
+
+selectionVerwijder.addEventListener('change', () => {
+    api("carr", 'GET').then((res) => {
+        if (res.message == 'success') {
+            for (i = 0; i < res.model.length; i++) {
+                if (res.model[i].id == selectionVerwijder.value) {
+                   
+                    verwijderID.push(res.model[i].id);
+                    console.log(res.model[i].id)
+
+                    break;
+                }
+                
+
+        }
+
+            
+        }
+    })
+})
 
 
 let selectionAdmin = document.querySelector('#carkeuze');
@@ -450,6 +667,23 @@ function showAutoWijzigen(){
     carWijzig()
 }
 
+function x (){
+    showPage('registerPage')
+}
+
+function showVerander(){
+
+    showPage("veranderenPage")
+    ReservatieWijzigen()
+   
+}
+
+
+function showVerwijderen(){
+    showPage('verwijderenPage')
+    reservatieVerwijderen()
+}
+
 function bindEvents() {
     connectButton("register", register);
     connectButton("login", login);
@@ -458,7 +692,17 @@ function bindEvents() {
     connectButton("auto_wijzigen", showAutoWijzigen);
     connectButton("auto_toevoegen1", autoToevoegen);
     connectButton("auto_toevoegen2",autoVeranderen );
+    connectButton("auto_verwijderen",showDelete );
+    connectButton("auto_toevoegen3",autoVerwijderen );
+    connectButton("auto_verwijderen4",showVerander);
+    connectButton("reservatie_wijzigen",reservatieVeranderen);
+    connectButton("auto_verwijderen5",showVerwijderen);
 
+
+    
+
+
+    
 
     enableSubmits();
 }

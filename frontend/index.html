@@ -228,26 +228,26 @@
 
         <div class="reservationForm">
             <select class="carSelection" id="selection1">
+                <option>Kies een reservering</option>
+
             </select>
 
             <label class="specsLabel"  id="txtDate1" name="txtDate">Datum</label>
             <label class="specsLabel" id="time1" name="time">Tijd</label> 
-            <input type="text">
+           
             <label class="specsLabel" id="brandstof1">Type brandstof</label>
-            <input type="text">
+           
 
             <label class="specsLabel" id="airco1">Inbegrepen Airco</label>
-            <input type="text">
+            
 
             <label class="specsLabel" id="automaat1">Inbegrepen Automaat</label>
-            <input type="text">
 
             <label class="specsLabel" id="zitplaatsen1">Aantal zitplaatsen</label>
 
+            <button  id="auto_verwijderen4">Reservatie Wijzigen</button>
+            <button  id="auto_verwijderen5">Reservatie Verwijderen</button>
 
-
-            <button id="reserverenVerwijderen">Reservering veranderen</button>
-            <button id="reserverenButton">Reservering verwijderen</button>
 
         </div>
     </div>
@@ -270,6 +270,8 @@
 
     <div class="reservationForm">
         <select class="carSelection" id="carkeuze">
+            <option>Kies een reservering</option>
+
         </select>
 
         <input type="date" id="txtDate" name="txtDate">
@@ -288,6 +290,7 @@
         </select>
         <button id="auto_wijzigen">Auto wijzigen</button>
         <button  id="auto_toevoegen">Auto toevoegen</button>
+        <button  id="auto_verwijderen">Auto verwijderen</button>
     </div>
 </div>
 
@@ -351,6 +354,97 @@
 </div>
 
     
+</div>
+
+
+
+ <!-- auto delete page -->
+
+ <div class="container hidden" id="autoVerwijderen">
+    <nav>
+        <div class="logo">
+            <img class="logo-size" src="Screenshot_2.png">
+        </div>
+        <p class="logo-letters">Sedecrem-Zneb</p>
+
+        <ul class="nav-links">
+            <li><a href="index.html">home</a></li>
+            <li><a onclick="showPage('loginPage')">login</a></li>
+        </ul>
+    </nav>
+    <div class="reservationForm">
+    <select class="carSelection" id="selection6">
+
+    </select>
+    
+
+    <button  id="auto_toevoegen3">Auto Verwijderen</button>
+
+</div>
+
+    
+</div>
+
+
+
+
+<!-- Reservatie Wijzigen -->
+<div class="container hidden" id="veranderenPage">
+    <nav>
+        <div class="logo">
+            <img class="logo-size" src="Screenshot_2.png">
+        </div>
+        <p class="logo-letters">Sedecrem-Zneb</p>
+
+        <ul class="nav-links">
+            <li class="welcome" id="welcome"></li>
+
+            <li><a href="contact.html">contact</a></li>
+            <li><a onclick="logout();">logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="reservationForm">
+        <select class="carSelection" id="reservering_veranderen">
+            <option>Kies een reservering</option>
+
+        </select>
+        <input class="test10" type="text" id="datum10" placeholder="Datum" name="model">
+        <input type="text"class="test11" id="tijd10" placeholder="Tijd" name="Brandstof">
+    
+
+        <button id="reservatie_wijzigen">Auto wijzigen</button>
+    </div>
+</div>
+
+
+
+
+<!-- Reservatie Verwijderen -->
+<div class="container hidden" id="verwijderenPage">
+    <nav>
+        <div class="logo">
+            <img class="logo-size" src="Screenshot_2.png">
+        </div>
+        <p class="logo-letters">Sedecrem-Zneb</p>
+
+        <ul class="nav-links">
+            <li class="welcome" id="welcome"></li>
+
+            <li><a href="contact.html">contact</a></li>
+            <li><a onclick="logout();">logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="reservationForm">
+        <select class="carSelection" id="x">
+            <option>Kies een reservering</option>
+
+        </select>
+      
+
+        <button id="reservatie_wijzigen">Reservatie verwijderen</button>
+    </div>
 </div>
 </body>
 <script src="main.js"></script>
