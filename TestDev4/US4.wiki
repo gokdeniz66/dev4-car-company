@@ -1,0 +1,51 @@
+---
+Test
+---
+|Import                                |
+|nl.hsac.fitnesse.fixture.slim         |
+|nl.hsac.fitnesse.fixture.slim.web     |
+|nl.praegus.fitnesse.slim.fixtures.util|
+
+|Library           |
+|pause test fixture|
+|string fixture    |
+
+|script          |selenium driver setup|
+|start driver for|chrome               |
+
+|script|browser test                                                    |
+|open  |http://127.0.0.1:5501/frontend/index.html                       |
+|click |Take me to my account                                           |
+|click |Email                                                           |
+|enter |debohughes17@gmail.com              |as|Email                   |
+|click |Password                                                        |
+|enter |sop655                              |as|Password                |
+|click |Login                                                           |
+|click |Auto toevoegen                                                  |
+|click |Car Name                                                        |
+|enter |Test Model Y                        |as|Car Name                |
+|click |Brandstof                                                       |
+|enter |Elektriciteit                       |as|Brandstof               |
+|click |Airco                                                           |
+|enter |0                                   |as|Airco                   |
+|click |Automaat                                                        |
+|enter |1                                   |as|Automaat                |
+|click |Aantal zitplaatsen                                              |
+|enter |5                                   |as|Aantal zitplaatsen      |
+|click |Auto toevoegen                                                  |
+|click |Take me to my account                                           |
+|click |Email                                                           |
+|enter |test10@icloud.com                   |as|Email                   |
+|click |Password                                                        |
+|enter |test655                             |as|Password                |
+|click |Login                                                           |
+|click |xpath=//*[@id="selection"]          |                           |
+|click |xpath=//*[@id="selection"]/option[4]|                           |
+|click |xpath=//*[@id="txtDate"]                                        |
+|enter |10/23/2022                          |as|xpath=//*[@id="txtDate"]|
+|click |xpath=//*[@id="time"]                                           |
+|enter |10:10                               |as|xpath=//*[@id="time"]   |
+|click |Reserveren                                                      |
+|dismiss alert                                                          |
+
+

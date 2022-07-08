@@ -1,0 +1,42 @@
+---
+Suites: Goed
+Test
+---
+|Import                                |
+|nl.hsac.fitnesse.fixture.slim         |
+|nl.hsac.fitnesse.fixture.slim.web     |
+|nl.praegus.fitnesse.slim.fixtures.util|
+
+|Library           |
+|pause test fixture|
+|string fixture    |
+
+|script          |selenium driver setup|
+|start driver for|chrome               |
+
+|script|browser test                                                    |
+|open  |http://127.0.0.1:5501/frontend/index.html                       |
+|click |Take me to my account                                           |
+|click |Email                                                           |
+|enter |test2@icloud.com                    |as|Email                   |
+|click |Password                                                        |
+|enter |test655                             |as|Password                |
+|click |Login                                                           |
+|click |xpath=//*[@id="selection"]          |                           |
+|click |xpath=//*[@id="selection"]/option[2]|                           |
+|click |xpath=//*[@id="txtDate"]                                        |
+|enter |10/23/2022                          |as|xpath=//*[@id="txtDate"]|
+|click |xpath=//*[@id="time"]                                           |
+|enter |10:10A                              |as|xpath=//*[@id="time"]   |
+|click |Reserveren                                                      |
+|dismiss alert                                                          |
+|wait  |2000                                |milliseconds               |
+|click |xpath=//*[@id="auto_verwijderen4"]                              |
+|click |xpath=//*[@id="reservering_veranderen"]                         |
+|click |xpath=//*[@id="reservering_veranderen"]/option[2]               |
+|click |xpath=//*[@id="datum10"]                                        |
+|enter |12/12/2022                          |as|xpath=//*[@id="datum10"]|
+|click |xpath=//*[@id="tijd10"]                                         |
+|enter |12:00P                              |as|xpath=//*[@id="tijd10"] |
+|click |xpath=//*[@id="reservatie_wijzigen"]                            |
+

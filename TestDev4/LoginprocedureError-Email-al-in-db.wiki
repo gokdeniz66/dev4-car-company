@@ -1,0 +1,32 @@
+---
+Help: E-mail al in de database
+Test
+---
+|Import                                |
+|nl.hsac.fitnesse.fixture.slim         |
+|nl.hsac.fitnesse.fixture.slim.web     |
+|nl.praegus.fitnesse.slim.fixtures.util|
+
+|Library           |
+|pause test fixture|
+|string fixture    |
+
+|script          |selenium driver setup|
+|start driver for|chrome               |
+
+|script|browser test                             |
+|open  |http://127.0.0.1:5501/frontend/index.html|
+|click |Take me to my account                    |
+|click |Register                                 |
+|click |Email                                    |
+|enter |test10@icloud.com  |as |Email            |
+|click |Password                                 |
+|enter |test655            |as |Password         |
+|click |Confirm password                         |
+|enter |test655            |as |Confirm password |
+|click |First name                               |
+|enter |Test               |as |First name       |
+|click |Last name                                |
+|enter |Subject            |as |Last name        |
+|click |Register                                 |
+|click |Take me to my account                    |

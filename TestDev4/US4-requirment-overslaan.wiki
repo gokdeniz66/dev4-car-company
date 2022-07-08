@@ -1,0 +1,36 @@
+---
+Help: Het overslaan van inputvelden
+Test
+---
+|Import                                |
+|nl.hsac.fitnesse.fixture.slim         |
+|nl.hsac.fitnesse.fixture.slim.web     |
+|nl.praegus.fitnesse.slim.fixtures.util|
+
+|Library           |
+|pause test fixture|
+|string fixture    |
+
+|script          |selenium driver setup|
+|start driver for|chrome               |
+
+|script|browser test                                |
+|open  |http://127.0.0.1:5501/frontend/index.html   |
+|click |Take me to my account                       |
+|click |Email                                       |
+|enter |debohughes17@gmail.com|as|Email             |
+|click |Password                                    |
+|enter |sop655                |as|Password          |
+|click |Login                                       |
+|click |Auto toevoegen                              |
+|click |Car Name                                    |
+|click |Brandstof                                   |
+|enter |Benzine               |as|Brandstof         |
+|click |Airco                                       |
+|click |Automaat                                    |
+|click |Aantal zitplaatsen                          |
+|enter |5                     |as|Aantal zitplaatsen|
+|click |Auto toevoegen                              |
+
+
+
