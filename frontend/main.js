@@ -19,7 +19,7 @@ function register(e) {
     // Submit data to API
     api("users", 'POST', data).then((res) => {
         if (res.message == 'success') {
-            alert("User created");
+            // alert("User created");
         }
     });
 }
@@ -38,23 +38,28 @@ function autoToevoegen() {
         brandstof: getValue("brandstof4"),
         airco: getValue("airco4"),
         automaat: getValue("automaat4"),
-        aantal_zitplaatsen: getValue("aantal_zitplaatsen4")
-
+        aantal_zitplaatsen: getValue("aantal_zitplaatsen4"),
     };
 
 
-    // Submit data to API
-    api("car", 'POST', data).then((res) => {
-        if (res.message == 'success') {
-            alert("car created");
-        } else {
-            alert("Credentials are incorrect");
-        }
-    });
+    if (data.automaat == "") {
+        alert("Je bent iets vergeten in te vullen.")
+    } else {
 
-
-
+        // Submit data to API
+        api("car", 'POST', data).then((res) => {
+            if (res.message == 'success') {
+                // alert("car created");
+            } else {
+                alert("Credentials are incorrect");
+            }
+        })
+    }
 }
+
+
+
+
 
 
 
@@ -97,31 +102,6 @@ function reservatieAnnuleren() {
     });
 }
 
-
-function autoToevoegen() {
-
-    data = {
-        model: getValue("model4"),
-        brandstof: getValue("brandstof4"),
-        airco: getValue("airco4"),
-        automaat: getValue("automaat4"),
-        aantal_zitplaatsen: getValue("aantal_zitplaatsen4")
-
-    };
-
-
-    // Submit data to API
-    api("car", 'POST', data).then((res) => {
-        if (res.message == 'success') {
-            alert("car created");
-        } else {
-            alert("Credentials are incorrect");
-        }
-    });
-
-
-
-}
 
 function autoVeranderen() {
     let x = hoi.toString()
@@ -624,7 +604,7 @@ function getReservationUser() {
         if (res.message == 'success') {
             if (res.user.reservatieCheck === 1) {
                 const x = document.getElementById('customerWithReservation');
-                x.innerHTML= 'Kies optie knop onderaan';
+                x.innerHTML = 'Kies optie knop onderaan';
                 reservatieLatenZien();
             } else {
                 showPage('reservationPage');
@@ -864,3 +844,7 @@ function currentSlide(n) {
 // Calendar disable past dates
 var today = new Date().toISOString().split('T')[0];
 document.getElementsByName("txtDate")[0].setAttribute('min', today);
+
+// calendar wijzigen reservatie pagina
+var today = new Date().toISOString().split('T')[0];
+document.getElementsByName("model66")[0].setAttribute('min', today);

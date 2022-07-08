@@ -209,10 +209,9 @@ def reservatieWijzigen2():
     print("SUCCESVOL")
 
     qry = '''
-    UPDATE reservatie
-SET check_reservatie = :check_reservatie
-WHERE user_id = :id;
-
+        UPDATE reservatie
+inner JOIN users
+where reservatie.user_id = users.id
     '''
 
     data = {
