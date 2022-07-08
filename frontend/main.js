@@ -66,16 +66,20 @@ function reservatieVeranderen() {
         id: x
     };
 
-    // Submit data to API
-    api("reservatie", 'PATCH', data).then((res) => {
-        if (res.message == 'success') {
-            alert("Reservatie veranderd");
-        } else {
-            alert("Credentials are incorrect");
-        }
-    });
-}
+    if (data.tijd == "") {
+        alert("Je bent iets vergeten in te vullen.")
+    } else {
 
+        // Submit data to API
+        api("reservatie", 'PATCH', data).then((res) => {
+            if (res.message == 'success') {
+                alert("Reservatie veranderd");
+            } else {
+                alert("Credentials are incorrect");
+            }
+        });
+    }
+}
 function reservatieAnnuleren() {
 
     let x = resVer.toString();
