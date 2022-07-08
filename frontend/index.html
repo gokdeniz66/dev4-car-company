@@ -49,23 +49,23 @@
             <label class="formLabel">Registration</label>
             <div class="input">
                 <span class="label">E-mail:</span>
-                <input type="text" name="email" id="email1" placeholder="Email">
+                <input type="email" name="email" id="email1" placeholder="Email" required>
             </div>
             <div class="input">
                 <span class="label">Password:</span>
-                <input type="password" name="password" id="password1" placeholder="Password">
+                <input type="password" name="password" id="password1" placeholder="Password" required>
             </div>
             <div class="input">
                 <span class="label">Confirm:</span>
-                <input type="password" name="confirm" id="confirm" placeholder="Confirm password">
+                <input type="password" name="confirm" id="confirm" placeholder="Confirm password" required>
             </div>
             <div class="input">
                 <span class="label">First name:</span>
-                <input type="text" name="firstname" id="firstname" placeholder="First name">
+                <input type="text" name="firstname" id="firstname" placeholder="First name" required>
             </div>
             <div class="input">
                 <span class="label">Last name:</span>
-                <input type="text" name="lastname" id="lastname" placeholder="Last name">
+                <input type="text" name="lastname" id="lastname" placeholder="Last name" required>
             </div>
             <div class="input">
                 <button id="register">Register</button>
@@ -94,11 +94,11 @@
             <div class="inputSection-login">
                 <div class="login-input">
                     <span class="label">E-mail:</span>
-                    <input type="text" name="email" id="email2" placeholder="Email">
+                    <input type="email" name="email" id="email2" placeholder="Email" required>
                 </div>
                 <div class="login-input">
                     <span class="label">Password:</span>
-                    <input type="password" name="password" id="password2" placeholder="Password">
+                    <input type="password" name="password" id="password2" placeholder="Password" required>
                 </div>
             </div>
 
@@ -144,9 +144,7 @@
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
 
-        <!-- <div class="im-looking-for">
-    <input class="grey" type="text" placeholder="I am looking for">
-</div> -->
+        
         <br><br><br><br><br><br>
         <div class="about-us">
             <h1>Welcome to Sedecrem-Zneb</h1>
@@ -193,8 +191,8 @@
                 <option id="choose-template" value="template" disabled selected>Kies een auto</option>
             </select>
 
-            <input type="date" id="txtDate" name="txtDate">
-            <input type="time" id="time" name="time">
+            <input type="date" id="txtDate" name="txtDate" required>
+            <input type="time" id="time" name="time" required>
             <label class="specsLabel" id="brandstof">Type brandstof</label>
             <label class="specsLabel" id="airco">Inbegrepen Airco</label>
             <label class="specsLabel" id="automaat">Inbegrepen Automaat</label>
@@ -229,7 +227,7 @@
 
         <div class="reservationForm">
             <select class="carSelection" id="selection1">
-                <option>Kies een reservering</option>
+                <option id="customerWithReservation">Kies een reservering</option>
 
             </select>
 
@@ -274,8 +272,8 @@
 
         </select>
 
-        <input type="date" id="txtDate" name="txtDate">
-        <input type="time" id="time" name="time">
+        <input type="date" id="txtDate" name="txtDate" required>
+        <input type="time" id="time" name="time" required>
         <label class="specsLabel" id="model2">Type model</label>
         <label class="specsLabel" id="brandstof2">Type brandstof</label>
         <label class="specsLabel" id="airco2">Inbegrepen Airco</label>
@@ -312,11 +310,11 @@
      
        
 
-        <input type="text" id="model4" placeholder="Car Name" name="model">
-        <input type="text" id="brandstof4" placeholder="Brandstof" name="Brandstof">
-        <input type="text" id="airco4" placeholder="Airco" name="airco">
-        <input type="text" id="automaat4" placeholder="Automaat" name="automaat">
-        <input type="text" id="aantal_zitplaatsen4" placeholder="Aantal zitplaatsen" name="zitplaatsen">
+        <input type="text" id="model4" placeholder="Car Name" name="model" required>
+        <input type="text" id="brandstof4" placeholder="Brandstof" name="Brandstof" required>
+        <input type="text" id="airco4" placeholder="Airco" name="airco" required>
+        <input type="text" id="automaat4" placeholder="Automaat" name="automaat" required>
+        <input type="number" id="aantal_zitplaatsen4" placeholder="Aantal zitplaatsen" name="zitplaatsen" required>
 
         <button  id="auto_toevoegen1">Auto toevoegen</button>
      
@@ -342,11 +340,11 @@
     <div class="reservationForm">
     <select class="carSelection" id="selection5">
     </select>
-    <input type="text" id="model6" class="test4" placeholder="Model Name" name="model">
-    <input type="text" id="brandstof6" class="test" placeholder="Brandstof" name="model">
-    <input type="text" id="airco6" class="test1" placeholder="airco" name="model">
-    <input type="text" id="automaat6" class="test2" placeholder="automaat" name="model">
-    <input type="text" id="aantal_zitplaatsen6" class="test3" placeholder="aantal_zitplaatsen" name="model">
+    <input type="text" id="model6" class="test4" placeholder="Model Name" name="model" required>
+    <input type="text" id="brandstof6" class="test" placeholder="Brandstof" name="model" required>
+    <input type="text" id="airco6" class="test1" placeholder="airco" name="model" required>
+    <input type="text" id="automaat6" class="test2" placeholder="automaat" name="model" required>
+    <input type="number" id="aantal_zitplaatsen6" class="test3" placeholder="aantal_zitplaatsen" name="model" required>
 
     <button  id="auto_toevoegen2">Auto wijzigen</button>
 
@@ -408,8 +406,8 @@
             <option>Kies een reservering</option>
 
         </select>
-        <input class="test10" type="text" id="datum10" placeholder="Datum" name="model">
-        <input type="text"class="test11" id="tijd10" placeholder="Tijd" name="Brandstof">
+        <input type="date" class="test10" id="datum10" placeholder="Datum" name="model" required>
+        <input type="time" class="test11" id="tijd10" placeholder="Tijd" name="Brandstof" required>
     
 
         <button id="reservatie_wijzigen">Auto wijzigen</button>
@@ -439,10 +437,9 @@
         <select class="carSelection" id="x">
             <option>Kies een reservering</option>
 
-        </select>
-      
+        </select>      
 
-        <button id="reservatie_wijzigen">Reservatie verwijderen</button>
+        <button id="reservatie_annuleren">Reservatie verwijderen</button>
     </div>
 </div>
 </body>

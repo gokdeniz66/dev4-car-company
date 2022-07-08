@@ -12,6 +12,8 @@ function register(e) {
         email: getValue("email1"),
         firstname: getValue("firstname"),
         lastname: getValue("lastname"),
+        admin: 0,
+        reservatieCheck: 0,
     };
 
     // Submit data to API
@@ -60,27 +62,39 @@ function reservatieVeranderen() {
 
     let x = idWijzig.toString()
 
-
     data = {
         tijd: getValue("tijd10"),
         datum: getValue("datum10"),
         id: x
-
-
     };
-
 
     // Submit data to API
     api("reservatie", 'PATCH', data).then((res) => {
         if (res.message == 'success') {
-            alert(" Reservatie veranderd");
+            alert("Reservatie veranderd");
         } else {
             alert("Credentials are incorrect");
         }
     });
+}
 
+function reservatieAnnuleren() {
 
+    let x = idWijzig.toString();
 
+    data = {
+        check_reservatie: 1,
+        id: x
+    };
+
+    // Submit data to API
+    api("reservatie2", 'PATCH', data).then((res) => {
+        if (res.message == 'success') {
+            alert("check_reservatie geupdate");
+        } else {
+            alert("Credentials are incorrect");
+        }
+    });
 }
 
 
@@ -367,6 +381,8 @@ selectionWijzigReservatie.addEventListener('change', () => {
 
 
 
+
+
 let selectionWijzig = document.querySelector('#selection5');
 var hoi = []
 
@@ -594,13 +610,28 @@ function getUser() {
             if (res.user.admin === 1) {
                 showPage('adminPage');
                 admin();
+
             } else {
-                showPage('reservationPage');
+                getReservationUser();
             }
         }
     });
+}
 
-
+function getReservationUser() {
+    // Fetch reservation data from API
+    api("me").then((res) => {
+        if (res.message == 'success') {
+            if (res.user.reservatieCheck === 1) {
+                const x = document.getElementById('customerWithReservation');
+                x.innerHTML= 'Kies optie knop onderaan';
+                reservatieLatenZien();
+            } else {
+                showPage('reservationPage');
+                console.log("klant heeft geen reservaties")
+            }
+        }
+    });
 }
 
 function logout() {
@@ -667,7 +698,6 @@ function x() {
 }
 
 function showVerander() {
-
     showPage("veranderenPage")
     ReservatieWijzigen()
 
@@ -692,11 +722,8 @@ function bindEvents() {
     connectButton("auto_verwijderen4", showVerander);
     connectButton("reservatie_wijzigen", reservatieVeranderen);
     connectButton("auto_verwijderen5", showVerwijderen);
-
-
-
-
     connectButton("auto_toevoegen2", autoVeranderen);
+    connectButton("reservatie_annuleren", reservatieAnnuleren);
 
 
 

@@ -17,17 +17,21 @@ def create_user():
     qry = '''
     INSERT INTO
         `users`
-            (`email`, `password`, `firstname`, `lastname`)
+            (`email`, `password`, `firstname`, `lastname`, `admin`, `reservatieCheck`)
         VALUES
-            (:email, :password, :firstname, :lastname)
+            (:email, :password, :firstname, :lastname, :admin, :reservatieCheck)
     '''
 
     # Hash the password before inserting
     args['password'] = generate_password_hash(args['password'])
 
     # Insert the user into the database
-    id = DB.insert(qry, args)
-
+    
+    try:
+        id = DB.insert(qry, args)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');  
+                
     # Return a message and the user id
     return {'message': 'success', 'id': id}, 201
 
@@ -52,7 +56,11 @@ def create_car():
         "aantal_zitplaatsen": args["aantal_zitplaatsen"],
         "check": "0"
         }
-    id = DB.insert(qry, data)
+    try:
+        id = DB.insert(qry, data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
+        
     return {'message': 'success', 'id': id}, 201
 
 
@@ -64,8 +72,10 @@ def show_user():
          FROM `users`
 
     '''
-
-    id = DB.all(qry)
+    try:
+        id = DB.all(qry)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
 
     return {'message': 'success', 'id': id}, 201
 
@@ -98,8 +108,11 @@ ORDER  by reservatie.tijd
 
 
     '''
-
-    model = DB.all(qry)
+    try:
+        model = DB.all(qry)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
+        
     print(model)
     return {'message': 'success', 'model': model}, 201
 
@@ -112,9 +125,11 @@ def show_car():
 
 
     '''
-
-    model = DB.all(qry)
-
+    try:
+        model = DB.all(qry)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
+        
     return {'message': 'success', 'model': model}, 201
 
 
@@ -126,9 +141,11 @@ def show_car2():
 
 
     '''
-
-    model = DB.all(qry)
-
+    try:
+        model = DB.all(qry)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
+        
     return {'message': 'success', 'model': model}, 201
 
 
@@ -144,7 +161,10 @@ def reservatieVerwijderen():
     SET "reservatie.check_reservatie" = 1
     WHERE id = :reservatie.id
     '''
-    DB.update(qry)
+    try:
+        DB.update(qry)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
     return {'message': 'success', }, 201
 
 
@@ -173,10 +193,37 @@ WHERE id = :id;
         "id": args["id"]
        
         }
-    model = DB.update(qry, data)
-   
+    try:
+        model = DB.update(qry, data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
     
     return {'message': 'success', 'id': model}, 201
+
+@jwt_required()
+def reservatieWijzigen2():
+    user = get_jwt_identity()
+
+    args = request.get_json()
+    print(user)
+    print("SUCCESVOL")
+
+    qry = '''
+    UPDATE reservatie
+SET check_reservatie = :check_reservatie
+WHERE user_id = :id;
+
+    '''
+
+    data = {
+        "check_reservatie": args["check_reservatie"],
+        "id": args["id"]
+    }
+
+    model = DB.update(qry, data)
+
+    return {'message': 'success', 'id': model}, 201
+
 
 @jwt_required()
 def reservatieVerwijderen():
@@ -201,7 +248,11 @@ def reservatieVerwijderen():
     SET "check" = 0
     WHERE id = :auto_id
     '''
-    DB.update(qry, data)
+    try:
+        DB.update(qry, data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
+        
     return {'message': 'success', 'id': id}, 201
 
 
@@ -227,8 +278,10 @@ WHERE id = :id;
         "id": args["id"]
        
         }
-    model = DB.update(qry, data)
-   
+    try:
+        model = DB.update(qry, data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
     
     return {'message': 'success', 'id': model}, 201
 
@@ -250,8 +303,10 @@ def autoVerwijderen():
         "id": args["id"]
        
         }
-    model = DB.update(qry,data)
-   
+    try:
+        model = DB.update(qry,data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
     
     return {'message': 'success', 'id': model}, 201
     
@@ -283,12 +338,15 @@ def reservatieVerwijderen():
     SET "check" = 0
     WHERE id = :id
     '''
-    DB.update(qry, data)
-
+    try:
+        DB.update(qry, data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
 
 
 
     return {'message': 'success', 'id': model}, 201
+
 @jwt_required()
 def reservatiePosten():
     user = get_jwt_identity()
@@ -304,7 +362,6 @@ def reservatiePosten():
             (:tijd, :datum, :auto_id, :leveren, :user_id, :creation_date, :check_reservatie)
     '''
 
-    
     data = {
         "tijd": args["tijd"],
         "datum": args["datum"],
@@ -313,7 +370,7 @@ def reservatiePosten():
         "user_id": user["id"],
         "creation_date": date.today(),
         "check_reservatie": "0"
-        }
+    }
     id = DB.insert(qry, data)
 
     qry = '''
@@ -321,6 +378,15 @@ def reservatiePosten():
     SET "check" = 1
     WHERE id = :auto_id
     '''
+    
+    DB.update(qry, data)
+
+    qry = '''
+        UPDATE users
+    SET "reservatieCheck" = 1
+    WHERE id = :user_id
+    '''
+
     DB.update(qry, data)
     return {'message': 'success', 'id': id}, 201
 
@@ -342,7 +408,10 @@ WHERE user_id = :user_id AND reservatie.check_reservatie= 0 AND date('now','+1 d
     data = {
         "user_id": user["id"]
     }
-    reservatie = DB.all(qry, data)
+    try:
+        reservatie = DB.all(qry, data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
     
 
     return {'message': 'success', 'reservatie': reservatie}, 201    
@@ -364,7 +433,9 @@ WHERE user_id = :user_id AND reservatie.check_reservatie= 0 AND date('now','+1 d
     data = {
         "user_id": user["id"]
     }
-    reservatie = DB.all(qry, data)
-    
+    try:
+        reservatie = DB.all(qry, data)
+    except Exception:
+        print('Er is een probleem opgetreden, contact de admin.');
 
     return {'message': 'success', 'reservatie': reservatie}, 201    
