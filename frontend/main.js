@@ -6,7 +6,6 @@ function register(e) {
         return;
     }
 
-
     data = {
         password: getValue("password1"),
         email: getValue("email1"),
@@ -25,7 +24,6 @@ function register(e) {
 }
 
 function showDelete() {
-
     showPage("autoVerwijderen")
     carVerwijderen()
 }
@@ -58,11 +56,6 @@ function autoToevoegen() {
 }
 
 
-
-
-
-
-
 function reservatieVeranderen() {
 
     let x = idWijzig.toString()
@@ -85,10 +78,9 @@ function reservatieVeranderen() {
 
 function reservatieAnnuleren() {
 
-    let x = idWijzig.toString();
+    let x = resVer.toString();
 
     data = {
-        check_reservatie: 1,
         id: x
     };
 
@@ -104,7 +96,7 @@ function reservatieAnnuleren() {
 
 
 function autoVeranderen() {
-    let x = hoi.toString()
+    let x = autoVar.toString()
     console.log(x)
 
     data = {
@@ -127,9 +119,6 @@ function autoVeranderen() {
             alert("Credentials are incorrect");
         }
     });
-
-
-
 }
 
 function autoVerwijderen() {
@@ -144,7 +133,7 @@ function autoVerwijderen() {
 
 
     // Submit data to API
-    api("car", 'DELETE', data).then((res) => {
+    api("carr", 'PATCH', data).then((res) => {
         if (res.message == 'success') {
             alert("auto verwijderd")
 
@@ -364,7 +353,7 @@ selectionWijzigReservatie.addEventListener('change', () => {
 
 
 let selectionWijzig = document.querySelector('#selection5');
-var hoi = []
+var autoVar = []
 
 selectionWijzig.addEventListener('change', () => {
     api("carr", 'GET').then((res) => {
@@ -384,7 +373,7 @@ selectionWijzig.addEventListener('change', () => {
                     } else {
                         document.getElementsByClassName("test2")[0].placeholder = "Wel een automaat";
                     }
-                    hoi.push(res.model[i].id);
+                    autoVar.push(res.model[i].id);
 
                     document.getElementsByClassName("test3")[0].placeholder = res.model[i].aantal_zitplaatsen;
                     console.log(res.model[i].brandstof)
@@ -450,17 +439,16 @@ selectionAdmin.addEventListener('change', () => {
                     } else {
                         document.getElementById("automaat2").innerHTML = "Wel een automaat";
                     }
+                    if (res.model[i].automaat === 0) {
+                        document.getElementById("levering2").innerHTML = "Zelf ophalen";
+                    } else {
+                        document.getElementById("levering2").innerHTML = "Wordt naar je geleverd";
+                    }
                     document.getElementById("zitplaatsen2").innerHTML = "Aantal zitplaatsen: " + res.model[i].aantal_zitplaatsen;
-
 
                     break;
                 }
-
-
             }
-
-
-
         }
     })
 })
@@ -488,19 +476,19 @@ selection1.addEventListener('change', () => {
                     } else {
                         document.getElementById("automaat1").innerHTML = "Wel een automaat";
                     }
+                    if (res.reservatie[i].leveren === 0) {
+                        document.getElementById("levering1").innerHTML = "Zelf ophalen";
+                    } else {
+                        document.getElementById("levering1").innerHTML = "Wordt naar je geleverd";
+                    }
+
                     document.getElementById("zitplaatsen1").innerHTML = "Aantal zitplaatsen: " + res.reservatie[i].aantal_zitplaatsen;
                     document.getElementById("time1").innerHTML = res.reservatie[i].tijd;
                     document.getElementById("txtDate1").innerHTML = res.reservatie[i].datum;
 
-
                     break;
                 }
-
-
             }
-
-
-
         }
     })
 })
@@ -510,7 +498,7 @@ selection1.addEventListener('change', () => {
 const select = document.getElementById('selectionLeveren');
 
 select.addEventListener('change', function handleChange(event) {
-    // 👇️ get selected VALUE even outside event handler
+    // get selected VALUE even outside event handler
     console.log(select.options[select.selectedIndex].value);
 
 });
@@ -544,7 +532,6 @@ selection.addEventListener('change', () => {
                     document.getElementById("aantal_zitplaatsen").innerHTML = "Aantal Zitplaatsen: " + res.model[i].aantal_zitplaatsen;
                     break;
                 }
-
             }
         }
     });
@@ -603,9 +590,8 @@ function getReservationUser() {
     api("me").then((res) => {
         if (res.message == 'success') {
             if (res.user.reservatieCheck === 1) {
-                const x = document.getElementById('customerWithReservation');
-                x.innerHTML = 'Kies optie knop onderaan';
                 reservatieLatenZien();
+                laatReservatieZien();
             } else {
                 showPage('reservationPage');
                 console.log("klant heeft geen reservaties")
@@ -683,7 +669,6 @@ function showVerander() {
 
 }
 
-
 function showVerwijderen() {
     showPage('verwijderenPage')
     reservatieVerwijderen()
@@ -704,8 +689,6 @@ function bindEvents() {
     connectButton("auto_verwijderen5", showVerwijderen);
     connectButton("auto_toevoegen2", autoVeranderen);
     connectButton("reservatie_annuleren", reservatieAnnuleren);
-
-
 
     enableSubmits();
 }
@@ -784,34 +767,6 @@ function deleteCookie(cname) {
 
 bindEvents();
 
-// let slideIndex = 1;
-// showSlides(slideIndex);
-
-// // Next/previous controls
-// function plusSlides(n) {
-//   showSlides(slideIndex += n);
-// }
-
-// // Thumbnail image controls
-// function currentSlide(n) {
-//   showSlides(slideIndex = n);
-// }
-
-// function showSlides(n) {
-//   let i;
-//   let slides = document.getElementsByClassName("mySlides");
-//   let dots = document.getElementsByClassName("dot");
-//   if (n > slides.length) {slideIndex = 1}
-//   if (n < 1) {slideIndex = slides.length}
-//   for (i = 0; i < slides.length; i++) {
-//     slides[i].style.display = "none";
-//   }
-//   for (i = 0; i < dots.length; i++) {
-//     dots[i].className = dots[i].className.replace(" active", "");
-//   }
-//   slides[slideIndex-1].style.display = "block";
-//   dots[slideIndex-1].className += " active";
-// }
 
 let slideIndex = 0;
 showSlides();

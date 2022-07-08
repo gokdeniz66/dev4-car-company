@@ -29,7 +29,7 @@ app.add_url_rule('/me', None, me, methods=['GET'])
 app.add_url_rule('/users', None, show_user, methods=['GET'])
 app.add_url_rule('/carr', None, show_car2, methods=['GET'])
 app.add_url_rule('/car', None, autoWijzigen, methods=['PATCH'])
-app.add_url_rule('/car', None, autoVerwijderen, methods=['DELETE'])
+app.add_url_rule('/carr', None, autoVerwijderen, methods=['PATCH'])
 app.add_url_rule('/car', None, show_car, methods=['GET'])
 app.add_url_rule('/reservatie', None, show_reservatie, methods=['GET'])
 app.add_url_rule('/reservatie1', None, show_reservatie1, methods=['GET'])
@@ -39,7 +39,6 @@ app.add_url_rule('/reservatie', None, reservatieVerwijderen, methods=['DELETE'])
 app.add_url_rule('/reservatie', None, reservatiePosten, methods=['POST'])
 app.add_url_rule('/admin', None, show_admin, methods=['GET'])
 app.add_url_rule('/car', None, create_car, methods=['POST'])
-
 
 
 

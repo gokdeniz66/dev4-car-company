@@ -209,13 +209,13 @@ def reservatieWijzigen2():
     print("SUCCESVOL")
 
     qry = '''
-        UPDATE reservatie
-inner JOIN users
-where reservatie.user_id = users.id
+        UPDATE reservatie SET `check_reservatie` = 1 
+    WHERE id= :id
+
     '''
 
     data = {
-        "check_reservatie": args["check_reservatie"],
+
         "id": args["id"]
     }
 
@@ -293,7 +293,8 @@ def autoVerwijderen():
     print(user)
 
     qry = '''
-    DELETE FROM auto WHERE id= :id
+    UPDATE auto SET `check` = 1 
+    WHERE id= :id
 
 
     '''
@@ -302,10 +303,8 @@ def autoVerwijderen():
         "id": args["id"]
        
         }
-    try:
-        model = DB.update(qry,data)
-    except Exception:
-        print('Er is een probleem opgetreden, contact de admin.');
+    
+    model = DB.update(qry,data)
     
     return {'message': 'success', 'id': model}, 201
     

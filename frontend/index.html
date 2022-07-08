@@ -144,7 +144,7 @@
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
 
-        
+
         <br><br><br><br><br><br>
         <div class="about-us">
             <h1>Welcome to Sedecrem-Zneb</h1>
@@ -231,217 +231,217 @@
 
             </select>
 
-            <label class="specsLabel"  id="txtDate1" name="txtDate">Datum</label>
-            <label class="specsLabel" id="time1" name="time">Tijd</label> 
-           
+            <label class="specsLabel" id="txtDate1" name="txtDate">Datum</label>
+            <label class="specsLabel" id="time1" name="time">Tijd</label>
+
             <label class="specsLabel" id="brandstof1">Type brandstof</label>
-           
+
 
             <label class="specsLabel" id="airco1">Inbegrepen Airco</label>
-            
+
 
             <label class="specsLabel" id="automaat1">Inbegrepen Automaat</label>
 
             <label class="specsLabel" id="zitplaatsen1">Aantal zitplaatsen</label>
 
-            <button  id="auto_verwijderen4">Reservatie Wijzigen</button>
-            <button  id="auto_verwijderen5">Reservatie Verwijderen</button>
+            <label class="specsLabel" id="levering1">Leveren</label>
+
+            <button id="auto_verwijderen4">Reservatie Wijzigen</button>
+            <button id="auto_verwijderen5">Reservatie Verwijderen</button>
 
         </div>
     </div>
 
- <!-- admin page -->
- <div class="container hidden" id="adminPage">
-    <nav>
-        <div class="logo">
-            <img class="logo-size" src="Screenshot_2.png">
+    <!-- admin page -->
+    <div class="container hidden" id="adminPage">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li class="welcome" id="welcome"></li>
+
+                <li><a href="contact.html">contact</a></li>
+                <li><a onclick="logout();">logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="reservationForm">
+            <select class="carSelection" id="carkeuze">
+                <option>Kies een reservering</option>
+
+            </select>
+
+            <input type="date" id="txtDate" name="txtDate" required>
+            <input type="time" id="time" name="time" required>
+            <label class="specsLabel" id="model2">Type model</label>
+            <label class="specsLabel" id="brandstof2">Type brandstof</label>
+            <label class="specsLabel" id="airco2">Inbegrepen Airco</label>
+            <label class="specsLabel" id="automaat2">Inbegrepen Automaat</label>
+            <label class="specsLabel" id="zitplaatsen2">Aantal zitplaatsen</label>
+            <label class="specsLabel" id="levering2">Leveren</label>
+
+
+            <button id="auto_wijzigen">Auto wijzigen</button>
+            <button id="auto_toevoegen">Auto toevoegen</button>
+            <button id="auto_verwijderen">Auto verwijderen</button>
         </div>
-        <p class="logo-letters">Sedecrem-Zneb</p>
-
-        <ul class="nav-links">
-            <li class="welcome" id="welcome"></li>
-
-            <li><a href="contact.html">contact</a></li>
-            <li><a onclick="logout();">logout</a></li>
-        </ul>
-    </nav>
-
-    <div class="reservationForm">
-        <select class="carSelection" id="carkeuze">
-            <option>Kies een reservering</option>
-
-        </select>
-
-        <input type="date" id="txtDate" name="txtDate" required>
-        <input type="time" id="time" name="time" required>
-        <label class="specsLabel" id="model2">Type model</label>
-        <label class="specsLabel" id="brandstof2">Type brandstof</label>
-        <label class="specsLabel" id="airco2">Inbegrepen Airco</label>
-        <label class="specsLabel" id="automaat2">Inbegrepen Automaat</label>
-        <label class="specsLabel" id="zitplaatsen2">Aantal zitplaatsen</label>
-
-
-        <select class="specsLabel" id="selectionLeveren">
-            <option value="1">Wel leveren</option>
-            <option value="0">Niet leveren</option>
-
-        </select>
-        <button id="auto_wijzigen">Auto wijzigen</button>
-        <button  id="auto_toevoegen">Auto toevoegen</button>
-        <button  id="auto_verwijderen">Auto verwijderen</button>
     </div>
-</div>
 
- <!-- auto toevoegen page -->
+    <!-- auto toevoegen page -->
 
- <div class="container hidden" id="autoToevoegen">
-    <nav>
-        <div class="logo">
-            <img class="logo-size" src="Screenshot_2.png">
+    <div class="container hidden" id="autoToevoegen">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li><a href="index.html">home</a></li>
+                <li><a onclick="showPage('loginPage')">login</a></li>
+            </ul>
+        </nav>
+        <div class="reservationForm">
+
+
+
+            <input type="text" id="model4" placeholder="Car Name" name="model" required>
+            <input type="text" id="brandstof4" placeholder="Brandstof" name="Brandstof" required>
+            <input type="number" id="airco4" placeholder="Airco" name="airco" required>
+            <input type="number" id="automaat4" placeholder="Automaat" name="automaat" required>
+            <input type="number" id="aantal_zitplaatsen4" placeholder="Aantal zitplaatsen" name="zitplaatsen" required>
+
+            <button id="auto_toevoegen1">Auto toevoegen</button>
+
         </div>
-        <p class="logo-letters">Sedecrem-Zneb</p>
-
-        <ul class="nav-links">
-            <li><a href="index.html">home</a></li>
-            <li><a onclick="showPage('loginPage')">login</a></li>
-        </ul>
-    </nav>
-    <div class="reservationForm">
-     
-       
-
-        <input type="text" id="model4" placeholder="Car Name" name="model" required>
-        <input type="text" id="brandstof4" placeholder="Brandstof" name="Brandstof" required>
-        <input type="number" id="airco4" placeholder="Airco" name="airco" required>
-        <input type="number" id="automaat4" placeholder="Automaat" name="automaat" required>
-        <input type="number" id="aantal_zitplaatsen4" placeholder="Aantal zitplaatsen" name="zitplaatsen" required>
-
-        <button  id="auto_toevoegen1">Auto toevoegen</button>
-     
     </div>
-</div>
 
 
 
- <!-- auto wijzigen page -->
+    <!-- auto wijzigen page -->
 
- <div class="container hidden" id="autoWijzigen">
-    <nav>
-        <div class="logo">
-            <img class="logo-size" src="Screenshot_2.png">
+    <div class="container hidden" id="autoWijzigen">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li><a href="index.html">home</a></li>
+                <li><a onclick="showPage('loginPage')">login</a></li>
+            </ul>
+        </nav>
+        <div class="reservationForm">
+            <select class="carSelection" id="selection5">
+            </select>
+            <input type="text" id="model6" class="test4" placeholder="Model Name" name="model" required>
+            <input type="text" id="brandstof6" class="test" placeholder="Brandstof" name="model" required>
+            <input type="number" id="airco6" class="test1" placeholder="airco 1 = ja 2 = nee" name="model" required>
+            <input type="number" id="automaat6" class="test2" placeholder="automaat 1 = ja 2 = nee" name="model"
+                required>
+            <input type="number" id="aantal_zitplaatsen6" class="test3" placeholder="aantal_zitplaatsen" name="model"
+                required>
+
+            <button id="auto_toevoegen2">Auto wijzigen</button>
+
         </div>
-        <p class="logo-letters">Sedecrem-Zneb</p>
-
-        <ul class="nav-links">
-            <li><a href="index.html">home</a></li>
-            <li><a onclick="showPage('loginPage')">login</a></li>
-        </ul>
-    </nav>
-    <div class="reservationForm">
-    <select class="carSelection" id="selection5">
-    </select>
-    <input type="text" id="model6" class="test4" placeholder="Model Name" name="model" required>
-    <input type="text" id="brandstof6" class="test" placeholder="Brandstof" name="model" required>
-    <input type="number" id="airco6" class="test1" placeholder="airco 1 = ja 2 = nee" name="model" required>
-    <input type="number" id="automaat6" class="test2" placeholder="automaat 1 = ja 2 = nee" name="model" required>
-    <input type="number" id="aantal_zitplaatsen6" class="test3" placeholder="aantal_zitplaatsen" name="model" required>
-
-    <button  id="auto_toevoegen2">Auto wijzigen</button>
-
-</div>
-
-    
-</div>
 
 
-
- <!-- auto delete page -->
-
- <div class="container hidden" id="autoVerwijderen">
-    <nav>
-        <div class="logo">
-            <img class="logo-size" src="Screenshot_2.png">
-        </div>
-        <p class="logo-letters">Sedecrem-Zneb</p>
-
-        <ul class="nav-links">
-            <li><a href="index.html">home</a></li>
-            <li><a onclick="showPage('loginPage')">login</a></li>
-        </ul>
-    </nav>
-    <div class="reservationForm">
-    <select class="carSelection" id="selection6">
-
-    </select>
-    
-
-    <button  id="auto_toevoegen3">Auto Verwijderen</button>
-
-</div>
-
-    
-</div>
-
-
-
-
-<!-- Reservatie Wijzigen -->
-<div class="container hidden" id="veranderenPage">
-    <nav>
-        <div class="logo">
-            <img class="logo-size" src="Screenshot_2.png">
-        </div>
-        <p class="logo-letters">Sedecrem-Zneb</p>
-
-        <ul class="nav-links">
-            <li class="welcome" id="welcome"></li>
-
-            <li><a href="contact.html">contact</a></li>
-            <li><a onclick="logout();">logout</a></li>
-        </ul>
-    </nav>
-
-    <div class="reservationForm">
-        <select class="carSelection" id="reservering_veranderen">
-            <option>Kies een reservering</option>
-
-        </select>
-        <input type="date" class="test10" id="datum10" placeholder="Datum" name="model66" required>
-        <input type="time" class="test11" id="tijd10" placeholder="Tijd" name="Brandstof" required>
-    
-
-        <button id="reservatie_wijzigen">Auto wijzigen</button>
     </div>
-</div>
 
 
 
+    <!-- auto delete page -->
 
-<!-- Reservatie Verwijderen -->
-<div class="container hidden" id="verwijderenPage">
-    <nav>
-        <div class="logo">
-            <img class="logo-size" src="Screenshot_2.png">
+    <div class="container hidden" id="autoVerwijderen">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li><a href="index.html">home</a></li>
+                <li><a onclick="showPage('loginPage')">login</a></li>
+            </ul>
+        </nav>
+        <div class="reservationForm">
+            <select class="carSelection" id="selection6">
+                <option>Kies een auto</option>
+            </select>
+
+
+            <button id="auto_toevoegen3">Auto Verwijderen</button>
+
         </div>
-        <p class="logo-letters">Sedecrem-Zneb</p>
 
-        <ul class="nav-links">
-            <li class="welcome" id="welcome"></li>
 
-            <li><a href="contact.html">contact</a></li>
-            <li><a onclick="logout();">logout</a></li>
-        </ul>
-    </nav>
-
-    <div class="reservationForm">
-        <select class="carSelection" id="x">
-            <option>Kies een reservering</option>
-
-        </select>      
-
-        <button id="reservatie_annuleren">Reservatie verwijderen</button>
     </div>
-</div>
+
+
+
+
+    <!-- Reservatie Wijzigen -->
+    <div class="container hidden" id="veranderenPage">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li class="welcome" id="welcome"></li>
+
+                <li><a href="contact.html">contact</a></li>
+                <li><a onclick="logout();">logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="reservationForm">
+            <select class="carSelection" id="reservering_veranderen">
+                <option>Kies een reservering</option>
+
+            </select>
+            <input type="date" class="test10" id="datum10" placeholder="Datum" name="model66" required>
+            <input type="time" class="test11" id="tijd10" placeholder="Tijd" name="Brandstof" required>
+
+
+            <button id="reservatie_wijzigen">Auto wijzigen</button>
+        </div>
+    </div>
+
+
+
+
+    <!-- Reservatie Verwijderen -->
+    <div class="container hidden" id="verwijderenPage">
+        <nav>
+            <div class="logo">
+                <img class="logo-size" src="Screenshot_2.png">
+            </div>
+            <p class="logo-letters">Sedecrem-Zneb</p>
+
+            <ul class="nav-links">
+                <li class="welcome" id="welcome"></li>
+
+                <li><a href="contact.html">contact</a></li>
+                <li><a onclick="logout();">logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="reservationForm">
+            <select class="carSelection" id="x">
+                <option>Kies een reservering</option>
+
+            </select>
+
+            <button id="reservatie_annuleren">Reservatie verwijderen</button>
+        </div>
+    </div>
 </body>
 <script src="main.js"></script>
 
